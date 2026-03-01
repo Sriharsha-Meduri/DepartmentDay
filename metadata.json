@@ -1,0 +1,5 @@
+{
+  "name": "Department Day Portal",
+  "description": "A frontend onboarding portal for Department Day featuring event showcases, registration, and admin dashboard.",
+  "requestFramePermissions": []
+}
