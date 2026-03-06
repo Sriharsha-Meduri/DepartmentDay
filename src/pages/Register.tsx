@@ -163,7 +163,7 @@ export function Register() {
               className="flex flex-col h-full"
             >
               {error && (
-                <div className="mb-6 p-4 bg-red-100 text-red-800 rounded-2xl flex items-center gap-3 text-sm font-medium border border-red-200">
+                <div className="mb-6 p-4 bg-[#fdecd0] text-[#8b1428] rounded-2xl flex items-center gap-3 text-sm font-medium border border-[#c9a020]">
                   <AlertCircle size={18} /> {error}
                 </div>
               )}

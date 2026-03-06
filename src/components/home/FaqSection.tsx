@@ -4,36 +4,36 @@ import { ChevronDown } from 'lucide-react';
 
 const FAQS = [
   {
-    question: 'Who can participate in Department Day events?',
-    answer: 'All currently enrolled students of the department are eligible to participate. Whether you are a first-year or final-year student, there are events designed for every skill level and interest.'
+    question: 'Wait, is this actually free? No hidden catch?',
+    answer: 'Completely free. Zero rupees. No "premium tier", no form with 47 fields. We\'re students organising this for students. We don\'t do paywalls. Just show up.'
   },
   {
-    question: 'How do I register for an event?',
-    answer: 'Simply browse the events page, select the event you want to join, and click "Register Now." Fill out the two-step registration form with your details and you are all set. Registration is completely free.'
+    question: 'I\'m a first-year. Is this a "seniors only" thing?',
+    answer: 'Absolutely not. 1st year to final year, everyone\'s in. Honestly, first-years tend to surprise everyone. Don\'t let your batch number intimidate you. Come and prove a point.'
   },
   {
-    question: 'Can I participate in multiple events?',
-    answer: 'Absolutely! You can register for as many events as you like, as long as the timings do not overlap. We encourage you to explore different categories and challenge yourself in new areas.'
+    question: 'Can I enter multiple events?',
+    answer: 'Yes, stack them up. The more the merrier. Just make sure the event timings don\'t clash (we haven\'t figured out human cloning yet). Check each event\'s date and time on the events page.'
   },
   {
-    question: 'What should I bring on event day?',
-    answer: 'Bring your college ID card, your registration confirmation (digital or printed), and any event-specific materials mentioned in the rules. For outdoor events, wear appropriate sports attire and carry water.'
+    question: 'My team bailed on me. Can I still enter?',
+    answer: 'Depends on the event. Some are solo by default, some need a team. Check the event page for team size. Also, text your classmates. You know at least three people who are sitting around doing nothing right now.'
   },
   {
-    question: 'Are there prizes for winners?',
-    answer: 'Yes! Top performers in each event receive trophies, medals, certificates, and cash prizes. Every participant also receives a Certificate of Participation. Special mentions may be awarded for outstanding effort.'
+    question: 'If I win, do I get an actual prize or just a certificate that\'ll gather dust?',
+    answer: 'Both, and that\'s the whole point. Cash prizes, trophies, and certificates. The certificate might gather dust. The win never will. Show up to find out.'
   },
   {
-    question: 'What if I need to cancel my registration?',
-    answer: 'You can cancel your registration up to 24 hours before the event starts by contacting the event coordinator directly. After that, cancellations may not be possible due to logistics planning.'
+    question: 'What do I actually need to bring on event day?',
+    answer: 'Your college ID, registration confirmation (screenshot is totally fine), and competitive energy. For coding: your laptop. For quizzes: your brain. For everything: water. Don\'t be the person who forgets water.'
   },
   {
-    question: 'How are the leaderboards updated?',
-    answer: 'Leaderboards are updated periodically during the event by the coordinators. Final standings are announced at the closing ceremony. You can check live scores on the event detail page.'
+    question: 'The events page only has technical events. Is that it?',
+    answer: 'Nope. Sports, cultural, and other events are being announced soon. Technical events went live first. Keep checking back. This page is going to get a lot busier in the coming weeks.'
   },
   {
-    question: 'Who do I contact for help or queries?',
-    answer: 'Each event has a dedicated coordinator whose contact details are listed on the event detail page. For general queries, reach out to the Department Day organizing committee at udbhav2k26@gmail.com.'
+    question: 'Who do I bother if I have a question or something breaks?',
+    answer: 'Every event page has a coordinator\'s phone number, call or WhatsApp directly. For general chaos, DM us on Instagram @udbhav_2k26 or email udbhav2k26@gmail.com. We reply. Usually pretty fast.'
   }
 ];
 
@@ -41,16 +41,16 @@ export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-32 px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20 scroll-mt-24">
+    <section id="faq" className="py-16 px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20 scroll-mt-24">
       <div className="max-w-3xl mx-auto">
-        <div className="mb-16 text-center">
+        <div className="mb-10 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             className="text-4xl lg:text-5xl font-medium tracking-tight mb-4"
           >
-            Frequently Asked Questions
+            Real questions,{' '}<span className="text-[var(--accent)]">real answers.</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -59,7 +59,7 @@ export function FaqSection() {
             transition={{ delay: 0.1 }}
             className="text-lg opacity-70 font-light"
           >
-            Got questions? We have answers. If you do not find what you are looking for, feel free to contact us.
+            No corporate FAQ fluff. Just the stuff you actually want to know.
           </motion.p>
         </div>
 

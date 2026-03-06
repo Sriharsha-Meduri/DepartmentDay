@@ -5,11 +5,13 @@ import { Home } from './pages/Home';
 import { Events } from './pages/Events';
 import { EventDetail } from './pages/EventDetail';
 import { Register } from './pages/Register';
+import { ScrollToTop } from './components/ScrollToTop';
 
 export default function App() {
   return (
     <AppProvider>
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />

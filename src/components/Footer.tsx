@@ -18,7 +18,7 @@ export function Footer() {
               DeptDay '26
             </div>
             <p className="font-light opacity-60 leading-relaxed text-sm mb-6">
-              Department Day 2026, proudly organised by the students of the Information Technology Department. Four events, epic prizes, and memories that last. Built by us, for us.
+              Department Day 2026, proudly organised by the students of the Information Technology Department. Technical events are live now. Sports, cultural and more coming soon. Built by us, for us.
             </p>
             <div className="flex gap-3">
               <a href="https://instagram.com/udbhav_2k26" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-xs font-medium hover:bg-[var(--highlight)] hover:text-[#0a2e1f] transition-colors">
@@ -52,6 +52,9 @@ export function Footer() {
                 <Link to="/events" className="font-light opacity-70 hover:opacity-100 hover:text-[var(--highlight)] transition-colors text-sm">
                   Technical Events
                 </Link>
+              </li>
+              <li>
+                <span className="font-light opacity-40 text-sm">Sports &amp; Cultural <span className="text-[var(--highlight)] opacity-80">(soon)</span></span>
               </li>
             </ul>
           </div>
@@ -89,11 +92,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 opacity-50 font-light text-sm">
           <p>&copy; 2026 Department Day. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:opacity-100 hover:text-[var(--highlight)] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:opacity-100 hover:text-[var(--highlight)] transition-colors">Terms of Service</a>
-            <a href="#" className="hover:opacity-100 hover:text-[var(--highlight)] transition-colors">Code of Conduct</a>
-          </div>
+          <p className="opacity-50">Made with ☕, questionable sleep schedules, and a lot of <span className="text-[var(--highlight)] opacity-100">love</span>. By IT students, for IT students.</p>
         </div>
       </div>
     </footer>

@@ -1,5 +1,6 @@
+import { Fragment } from 'react';
 import { motion } from 'framer-motion';
-import { Star } from 'lucide-react';
+import { Star, Quote } from 'lucide-react';
 
 const TESTIMONIALS = [
   {
@@ -7,84 +8,119 @@ const TESTIMONIALS = [
     role: '3rd Year, CSE',
     quote: 'Department Day was the highlight of my college life. The hackathon pushed me to build something I never thought I could in 24 hours. The energy in the room was absolutely electric.',
     rating: 5,
-    avatar: 'https://i.pravatar.cc/150?u=priya'
+    avatar: 'https://i.pravatar.cc/150?u=priya',
+    accent: 'from-blue-400 to-cyan-400',
   },
   {
     name: 'Rahul Menon',
     role: '2nd Year, ECE',
     quote: 'The futsal tournament was incredibly well organized. Fair referees, great sportsmanship, and the crowd support made every goal feel like a World Cup moment. Cannot wait for next year.',
     rating: 5,
-    avatar: 'https://i.pravatar.cc/150?u=rahul'
+    avatar: 'https://i.pravatar.cc/150?u=rahul',
+    accent: 'from-green-400 to-lime-400',
   },
   {
     name: 'Ananya Reddy',
     role: '4th Year, IT',
-    quote: 'I participated in the debate competition and the creative writing event. Both were challenging and rewarding. The coordinators were super helpful and the judging was transparent.',
+    quote: 'I participated in the debate and the creative writing event. Both were challenging and rewarding. The coordinators were super helpful and the judging was fully transparent.',
     rating: 4,
-    avatar: 'https://i.pravatar.cc/150?u=ananya'
+    avatar: 'https://i.pravatar.cc/150?u=ananya',
+    accent: 'from-purple-400 to-pink-400',
   },
   {
     name: 'Karthik Nair',
     role: '1st Year, MECH',
-    quote: 'As a first-year student, I was nervous about participating. But the registration process was smooth, the volunteers were welcoming, and I ended up winning 3rd place in chess!',
+    quote: 'As a first-year I was nervous about participating, but the volunteers were welcoming and the vibe was great. I ended up winning 3rd place in chess. Didn\'t see that coming.',
     rating: 5,
-    avatar: 'https://i.pravatar.cc/150?u=karthik'
-  }
+    avatar: 'https://i.pravatar.cc/150?u=karthik',
+    accent: 'from-orange-400 to-yellow-400',
+  },
+  {
+    name: 'Divya Krishnan',
+    role: '2nd Year, IT',
+    quote: 'The Vibeathon was unreal. We had four hours to build a web app from scratch and somehow pulled it off. The judges actually understood good design. Definitely doing it again.',
+    rating: 5,
+    avatar: 'https://i.pravatar.cc/150?u=divya',
+    accent: 'from-rose-400 to-red-400',
+  },
+  {
+    name: 'Arun Prakash',
+    role: '3rd Year, CSE',
+    quote: 'Cyber Hunt was the most fun I\'ve had in college. Stayed up until 3 AM solving CTF challenges with my team. We placed 2nd. The problems were genuinely clever and fair.',
+    rating: 5,
+    avatar: 'https://i.pravatar.cc/150?u=arun',
+    accent: 'from-teal-400 to-green-400',
+  },
 ];
+
+function TestimonialCard({ t }: { t: typeof TESTIMONIALS[number] }) {
+  return (
+    <div className="w-80 flex-shrink-0 bg-[var(--card)] backdrop-blur-md rounded-3xl p-6 border border-[var(--card-border)] flex flex-col gap-4 mx-3 hover:bg-[var(--card-hover)] transition-colors card-shine-wrap">
+      <div className="flex items-start justify-between">
+        <div className="flex gap-0.5">
+          {Array.from({ length: 5 }).map((_, j) => (
+            <Star key={j} size={14} className={j < t.rating ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'} />
+          ))}
+        </div>
+        <Quote size={18} className="opacity-20 flex-shrink-0" />
+      </div>
+      <p className="opacity-65 font-light leading-relaxed text-sm flex-1 line-clamp-4">"{t.quote}"</p>
+      <div className="flex items-center gap-3 pt-3 border-t border-[var(--divider-light)]">
+        <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.accent} flex items-center justify-center text-white text-sm font-bold flex-shrink-0`}>
+          {t.name.split(' ').map(n => n[0]).join('')}
+        </div>
+        <div>
+          <div className="font-medium text-sm">{t.name}</div>
+          <div className="text-xs opacity-40">{t.role}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 4 copies of each set so the -50% loop looks seamless at any viewport width
+const ROW1 = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS];
+const ROW2 = [...TESTIMONIALS.slice().reverse(), ...TESTIMONIALS.slice().reverse(), ...TESTIMONIALS.slice().reverse(), ...TESTIMONIALS.slice().reverse()];
 
 export function TestimonialsSection() {
   return (
-    <section className="py-32 px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20">
-      <div className="mb-16">
+    <section className="py-16 px-0 relative z-20 overflow-hidden">
+      {/* Heading */}
+      <div className="px-8 lg:px-16 max-w-[1600px] mx-auto mb-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           className="text-4xl lg:text-5xl font-medium tracking-tight mb-4"
         >
-          What Students Say
+          What they said last time 💬
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
           transition={{ delay: 0.1 }}
           className="text-lg opacity-70 max-w-2xl font-light"
         >
-          Do not just take our word for it. Here is what past participants have to say about their Department Day experience.
+          These are real quotes from students who showed up to previous Department Day editions. Your turn to add one.
         </motion.p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {TESTIMONIALS.map((testimonial, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="bg-[var(--card)] backdrop-blur-md rounded-3xl p-8 border border-[var(--card-border)] hover:bg-[var(--card-hover)] transition-colors"
-          >
-            <div className="flex gap-1 mb-4">
-              {Array.from({ length: 5 }).map((_, j) => (
-                <Star
-                  key={j}
-                  size={16}
-                  className={j < testimonial.rating ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}
-                />
-              ))}
-            </div>
-            <p className="opacity-70 font-light leading-relaxed mb-6 text-sm italic">"{testimonial.quote}"</p>
-            <div className="flex items-center gap-4">
-              <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover border-2 border-[var(--card-border)]" />
-              <div>
-                <div className="font-medium">{testimonial.name}</div>
-                <div className="text-sm opacity-50">{testimonial.role}</div>
-              </div>
-            </div>
-          </motion.div>
-        ))}
+      {/* Row 1 — scrolls left */}
+      <div className="overflow-hidden mb-4">
+        <div className="flex animate-marquee-medium w-max">
+          {ROW1.map((t, i) => <Fragment key={`r1-${i}`}><TestimonialCard t={t} /></Fragment>)}
+        </div>
+      </div>
+
+      {/* Row 2 — scrolls right */}
+      <div className="overflow-hidden">
+        <div className="flex animate-marquee-reverse w-max">
+          {ROW2.map((t, i) => <Fragment key={`r2-${i}`}><TestimonialCard t={t} /></Fragment>)}
+        </div>
       </div>
     </section>
   );
 }
+
+

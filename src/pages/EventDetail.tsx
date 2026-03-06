@@ -5,9 +5,9 @@ import { MOCK_EVENTS } from '../data/mock';
 import { useRef } from 'react';
 
 const PRIZES = [
-  { place: '1st Place', reward: 'Trophy + Certificate + Cash Prize', color: 'bg-yellow-100 text-yellow-800 border-yellow-300' },
-  { place: '2nd Place', reward: 'Silver Medal + Certificate', color: 'bg-gray-100 text-gray-700 border-gray-300' },
-  { place: '3rd Place', reward: 'Bronze Medal + Certificate', color: 'bg-amber-100 text-amber-800 border-amber-300' },
+  { place: '🥇 1st Place', reward: 'Trophy + Certificate + Cash Prize', color: 'bg-yellow-100 text-yellow-800 border-yellow-300' },
+  { place: '🥈 2nd Place', reward: 'Silver Medal + Certificate', color: 'bg-gray-100 text-gray-700 border-gray-300' },
+  { place: '🥉 3rd Place', reward: 'Bronze Medal + Certificate', color: 'bg-amber-100 text-amber-800 border-amber-300' },
 ];
 
 export function EventDetail() {
@@ -21,9 +21,11 @@ export function EventDetail() {
   if (!event) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center text-center px-8">
-        <h1 className="text-4xl font-medium mb-4">Event Not Found</h1>
-        <p className="opacity-70 mb-8">The event you are looking for does not exist or has been removed.</p>
-        <Link to="/events" className="bg-[var(--btn)] text-[var(--btn-text)] px-8 py-3 rounded-full font-medium hover:opacity-90 transition-colors">Back to Events</Link>
+        <div className="text-7xl mb-6">👀</div>
+        <h1 className="text-4xl font-medium mb-3">That event ghosted us.</h1>
+        <p className="opacity-60 mb-2 font-light">Either it doesn't exist, or it got removed.</p>
+        <p className="opacity-40 text-sm mb-8 font-light">Either way, there are four very real events waiting for you.</p>
+        <Link to="/events" className="bg-[var(--btn)] text-[var(--btn-text)] px-8 py-3 rounded-full font-medium hover:opacity-90 transition-colors">Show me what's real →</Link>
       </div>
     );
   }
@@ -76,29 +78,29 @@ export function EventDetail() {
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center flex-shrink-0"><Target size={18} /></div>
                   <div>
-                    <h4 className="font-medium mb-1">Competitive Environment</h4>
-                    <p className="opacity-60 font-light text-sm leading-relaxed">Go head to head with the best in your department. Every round is designed to test your skills and push you to perform at your peak.</p>
+                    <h4 className="font-medium mb-1">You will sweat. That's the point.</h4>
+                    <p className="opacity-60 font-light text-sm leading-relaxed">Everyone in that room wants the same trophy. It's going to get intense, competitive, and honestly a little chaotic. Show up ready.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center flex-shrink-0"><Users size={18} /></div>
                   <div>
-                    <h4 className="font-medium mb-1">Expert Judging Panel</h4>
-                    <p className="opacity-60 font-light text-sm leading-relaxed">Our events are judged by experienced faculty members and industry professionals who bring fair and insightful evaluation to every performance.</p>
+                    <h4 className="font-medium mb-1">Judged by actual humans</h4>
+                    <p className="opacity-60 font-light text-sm leading-relaxed">Not a script, not an algorithm. Real faculty who've seen every trick in the book. Come ready to impress, not just participate.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-green-100 text-green-700 flex items-center justify-center flex-shrink-0"><Star size={18} /></div>
                   <div>
-                    <h4 className="font-medium mb-1">Networking Opportunities</h4>
-                    <p className="opacity-60 font-light text-sm leading-relaxed">Meet like-minded peers, form new friendships, and connect with seniors and coordinators who share your passion and interests.</p>
+                    <h4 className="font-medium mb-1">You'll make weird friends</h4>
+                    <p className="opacity-60 font-light text-sm leading-relaxed">You'll end up talking to someone you've never spoken to before. That's a feature. Some of the best college friendships start at competitions like this.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center flex-shrink-0"><Gift size={18} /></div>
                   <div>
-                    <h4 className="font-medium mb-1">Exciting Prizes</h4>
-                    <p className="opacity-60 font-light text-sm leading-relaxed">Top performers walk away with trophies, certificates, and special prizes. Every participant receives a certificate of participation as well.</p>
+                    <h4 className="font-medium mb-1">Actual prizes. Not stickers.</h4>
+                    <p className="opacity-60 font-light text-sm leading-relaxed">Trophies, certificates, and cash. The kind of thing you screenshot, WhatsApp your family, and quietly add to your resume.</p>
                   </div>
                 </div>
               </div>
@@ -115,17 +117,17 @@ export function EventDetail() {
                   </motion.div>
                 ))}
               </div>
-              <p className="text-sm opacity-50 font-light text-center">All participants will receive a Certificate of Participation. Special mentions may be awarded at the coordinator's discretion for outstanding effort or sportsmanship.</p>
+              <p className="text-sm opacity-50 font-light text-center">Every single person who shows up walks out with a Certificate of Participation. Show up, compete, get certified. It's that straightforward.</p>
             </motion.section>
 
             {/* Quick Tips */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.5 }} className="bg-[var(--btn)] text-[var(--btn-text)] rounded-3xl p-8">
-              <h3 className="text-xl font-medium mb-4">Quick Tips</h3>
+              <h3 className="text-xl font-medium mb-4">Don't be that person 🙏</h3>
               <ul className="space-y-3 text-sm font-light opacity-80">
-                <li className="flex items-start gap-3"><span className="text-[var(--highlight)] mt-0.5">1.</span>Arrive at least 15 minutes before the scheduled start time to complete check-in.</li>
-                <li className="flex items-start gap-3"><span className="text-[var(--highlight)] mt-0.5">2.</span>Carry your college ID card and registration confirmation for verification.</li>
-                <li className="flex items-start gap-3"><span className="text-[var(--highlight)] mt-0.5">3.</span>Read through all the rules carefully before the event begins.</li>
-                <li className="flex items-start gap-3"><span className="text-[var(--highlight)] mt-0.5">4.</span>Stay hydrated and take breaks if needed. Your well-being comes first.</li>
+                <li className="flex items-start gap-3"><span className="text-[var(--highlight)] mt-0.5">1.</span>Arrive 15 minutes early. Check-in lines exist. Don't learn this the hard way.</li>
+                <li className="flex items-start gap-3"><span className="text-[var(--highlight)] mt-0.5">2.</span>Bring your college ID and registration confirmation. A screenshot is fine. Memorising your reg number is better.</li>
+                <li className="flex items-start gap-3"><span className="text-[var(--highlight)] mt-0.5">3.</span>Actually read the rules before it starts. Everyone who skips this regrets it, every single time.</li>
+                <li className="flex items-start gap-3"><span className="text-[var(--highlight)] mt-0.5">4.</span>Drink water. Eat something. Your brain works better when you're not running on vibes alone.</li>
               </ul>
             </motion.div>
 
@@ -156,7 +158,7 @@ export function EventDetail() {
                   Register Now <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </motion.button>
               </a>
-              <p className="text-xs text-center opacity-40 mt-4 font-light">Registration is free and takes less than 2 minutes</p>
+              <p className="text-xs text-center opacity-40 mt-4 font-light">Free. 30 seconds. No card required. Just do it.</p>
             </motion.div>
 
             {/* Coordinator Card */}
@@ -176,7 +178,7 @@ export function EventDetail() {
               <div className="flex items-center gap-3 text-sm font-medium opacity-80 mb-4">
                 <Phone size={16} /> {event.coordinator.contact}
               </div>
-              <p className="text-sm opacity-50 font-light leading-relaxed">For any queries regarding this event, feel free to reach out to the coordinator directly. They are happy to help with questions about rules, team formation, or venue details.</p>
+              <p className="text-sm opacity-50 font-light leading-relaxed">Questions about rules, venue, teamwork, or anything else? Just text or call directly. They don't bite.</p>
             </motion.div>
           </div>
         </div>

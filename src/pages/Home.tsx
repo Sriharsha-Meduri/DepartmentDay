@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, ArrowDown, ArrowRight, Clock, MapPin, Code2, ExternalLink, Github, CheckCircle2, Briefcase } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, ArrowRight, Clock, MapPin, ExternalLink, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { GlassBars } from '../components/GlassBars';
 import { MOCK_EVENTS } from '../data/mock';
@@ -8,6 +8,7 @@ import { StatsSection } from '../components/home/StatsSection';
 import { HowItWorks } from '../components/home/HowItWorks';
 import { ScheduleSection } from '../components/home/ScheduleSection';
 import { FaqSection } from '../components/home/FaqSection';
+import { TestimonialsSection } from '../components/home/TestimonialsSection';
 
 const textContainer = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } } };
 const textItem = { hidden: { opacity: 0, y: 40, rotateX: -20 }, show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } };
@@ -18,7 +19,7 @@ export function Home() {
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hrs: 0, mins: 0, secs: 0 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -35,9 +36,9 @@ export function Home() {
       if (distance < 0) { clearInterval(interval); return; }
       setTimeLeft({
         days: Math.floor(distance / 86400000),
-        hours: Math.floor((distance % 86400000) / 3600000),
-        minutes: Math.floor((distance % 3600000) / 60000),
-        seconds: Math.floor((distance % 60000) / 1000)
+        hrs: Math.floor((distance % 86400000) / 3600000),
+        mins: Math.floor((distance % 3600000) / 60000),
+        secs: Math.floor((distance % 60000) / 1000)
       });
     }, 1000);
     return () => clearInterval(interval);
@@ -58,13 +59,13 @@ export function Home() {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--divider)] text-sm font-medium mb-6 bg-[var(--card)] backdrop-blur-sm"
             >
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse-dot inline-block"></span>
-              April 8, 2026 · IT Department Day
+              April 8, 2026 · IT Department Day · it's happening 🎉
             </motion.div>
 
             <motion.h1 variants={textContainer} initial="hidden" animate="show" className="text-[4rem] sm:text-[5rem] lg:text-[6rem] font-medium leading-[0.95] tracking-[-0.03em] mb-8 perspective-1000">
               <motion.div variants={textItem} className="origin-bottom">Create.</motion.div>
               <motion.div variants={textItem} className="origin-bottom">Compete.</motion.div>
-              <motion.div variants={textItem} className="origin-bottom text-[var(--accent)]">Celebrate.</motion.div>
+              <motion.div variants={textItem} className="origin-bottom animate-text-shimmer">Celebrate.</motion.div>
             </motion.h1>
 
             <motion.p 
@@ -73,7 +74,7 @@ export function Home() {
               transition={{ duration: 0.8, delay: 0.4 }} 
               className="text-lg lg:text-xl opacity-70 max-w-md mb-10 leading-relaxed font-light"
             >
-              The IT Department's biggest day is here. Technical events are live — quizzes, coding, design & cybersecurity. More events (sports, cultural & more) are dropping soon. Built by students, for students.
+              The IT Department's biggest day is here. Four technical events are open right now: quiz your knowledge, code your way out, design something brilliant, or hunt for flags. More events coming soon. No fees. No excuses.
             </motion.p>
 
             {/* Countdown Timer */}
@@ -202,7 +203,7 @@ export function Home() {
         <div className="flex animate-marquee whitespace-nowrap w-max">
           {[0, 1].map((i) => (
             <span key={i} className="flex items-center">
-              {['QUIZ BLITZ', 'MARCH 9', 'CODING CONTEST', 'MARCH 10', 'VIBEATHON', 'MARCH 17', 'CYBER HUNT', 'MARCH 18', 'IT DEPARTMENT', 'APRIL 8 2026', 'REGISTER FREE', 'DEPARTMENT DAY'].map((text) => (
+              {['QUIZ BLITZ', 'MARCH 9', 'CODING CONTEST', 'MARCH 10', 'VIBEATHON', 'MARCH 17', 'CYBER HUNT', 'MARCH 18', 'FREE ENTRY', 'NO EXCUSES', 'GLORY AWAITS', 'SHOW UP & WIN', 'IT DEPARTMENT', 'APRIL 8 2026', 'REGISTER FREE', 'DEPARTMENT DAY'].map((text) => (
                 <span key={text} className="flex items-center">
                   <span className="text-xs font-bold tracking-[0.2em] uppercase px-5">{text}</span>
                   <span className="text-[var(--highlight)] text-base">✦</span>
@@ -220,14 +221,14 @@ export function Home() {
       <HowItWorks />
 
       {/* ===== FEATURED EVENTS ===== */}
-      <section className="py-32 px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20">
-        <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-8">
+      <section className="py-16 px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20">
+        <div className="mb-10 flex flex-col md:flex-row justify-between items-end gap-8">
           <div>
             <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} className="text-4xl lg:text-5xl font-medium tracking-tight mb-4">
-              All Events
+              The lineup ⚔️
             </motion.h2>
             <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ delay: 0.1 }} className="text-lg opacity-70 max-w-2xl font-light">
-              Four technical showdowns are live now — more events across sports, culture & more are being announced soon. Register for what's open and stay tuned.
+              Four technical showdowns open right now. More events across sports, culture & more are being announced soon. Spot something you like? Register before the seat's gone.
             </motion.p>
           </div>
           <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }}>
@@ -245,7 +246,7 @@ export function Home() {
               whileHover={{ y: -12, scale: 1.02 }} 
               viewport={{ once: true, margin: "-100px" }} 
               transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }} 
-              className="bg-[var(--card-solid)] rounded-3xl overflow-hidden border border-[var(--divider-light)] flex flex-col group hover:shadow-2xl transition-shadow duration-500"
+              className="card-shine-wrap bg-[var(--card-solid)] rounded-3xl overflow-hidden border border-[var(--divider-light)] flex flex-col group hover:shadow-2xl transition-shadow duration-500"
             >
               <div className="h-48 overflow-hidden relative">
                 <motion.img whileHover={{ scale: 1.1 }} transition={{ duration: 0.6 }} src={event.image} alt={event.title} className="w-full h-full object-cover" />
@@ -260,8 +261,7 @@ export function Home() {
                   <span className="flex items-center gap-1"><Clock size={12} /> {event.time}</span>
                   <span className="flex items-center gap-1"><MapPin size={12} /> {event.venue}</span>
                 </div>
-                <div className="flex items-center justify-between pt-4 border-t border-[var(--divider-light)]">
-                  <div className="text-sm font-medium opacity-60">{event.registeredCount} Registered</div>
+                <div className="flex items-center justify-end pt-4 border-t border-[var(--divider-light)]">
                   <Link to={`/event/${event.id}`} className="w-10 h-10 rounded-full bg-[var(--divider-light)] flex items-center justify-center group-hover:bg-[var(--btn)] group-hover:text-[var(--btn-text)] transition-colors">
                     <ArrowUpRight size={18} />
                   </Link>
@@ -278,69 +278,110 @@ export function Home() {
       {/* ===== FAQ ===== */}
       <FaqSection />
 
+      {/* ===== TESTIMONIALS ===== */}
+      <TestimonialsSection />
+
       {/* ===== MADE WITH LOVE BY ===== */}
-      <section className="py-24 px-8 lg:px-16 max-w-[1600px] mx-auto">
+      <section className="py-16 px-8 lg:px-16 max-w-[1600px] mx-auto">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 className="text-4xl lg:text-5xl font-medium tracking-tight mb-12">
+          <h2 className="text-4xl lg:text-5xl font-medium tracking-tight mb-8">
             Made with <span className="text-[var(--accent)]">love</span> by
           </h2>
-          <div className="bg-[var(--card)] backdrop-blur-md rounded-3xl border border-[var(--card-border)] overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
-            <div className="grid grid-cols-1 lg:grid-cols-3">
-              {/* Main info */}
-              <div className="lg:col-span-2 p-10 border-b lg:border-b-0 lg:border-r border-[var(--card-border)]">
-                <div className="flex items-center gap-3 mb-2">
-                  <Code2 size={22} className="text-[var(--accent)]" />
-                  <h3 className="text-3xl font-medium">Sriharsha Meduri</h3>
-                </div>
-                <p className="text-sm font-medium opacity-50 mb-4 tracking-wide">BTech IT · Andhra University &nbsp;|&nbsp; ML Engineer &nbsp;|&nbsp; Web Developer</p>
-                <p className="opacity-70 font-light leading-relaxed mb-8 max-w-xl">
-                  Built this website for our department's annual fest. I'm a Third-year IT student passionate about ML and web development.
-                </p>
 
-                {/* Achievements */}
-                <div className="bg-[var(--card-solid)] rounded-2xl p-6 border border-[var(--divider-light)]">
-                  <h4 className="text-sm font-semibold text-[var(--accent)] uppercase tracking-wider mb-4">Key Highlights</h4>
-                  <ul className="space-y-3">
-                    {[
-                      { bold: 'Winner', rest: ' — National Cybersecurity Hackathon, Ministry of Electronics & IT (MeitY)' },
-                      { bold: 'Top 5 Finalist', rest: ' — MumbaiHacks 2025, competing among top national teams' },
-                      { bold: 'Research Intern at IIM Shillong', rest: ' — Financial NLP: 16x faster than DistilBERT at same accuracy' },
-                      { bold: 'Co-Lead', rest: ' — GDSC Cybersecurity Chapter' },
-                    ].map((item, i) => (
-                      <motion.li key={i} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="flex items-start gap-3">
-                        <CheckCircle2 size={16} className="text-[var(--accent)] flex-shrink-0 mt-0.5" />
-                        <span className="text-sm font-light opacity-80"><strong className="font-semibold opacity-100">{item.bold}</strong>{item.rest}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+          <div className="relative bg-[var(--card)] backdrop-blur-md rounded-3xl border border-[var(--card-border)] overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-500">
+            {/* Rainbow accent bar */}
+            <div className="h-1 w-full bg-gradient-to-r from-[var(--accent)] via-[var(--highlight)] to-purple-400" />
 
-              {/* Sidebar: skills + links */}
-              <div className="p-10 flex flex-col justify-between gap-8">
-                <div>
-                  <h4 className="text-sm font-semibold opacity-40 uppercase tracking-wider mb-4 flex items-center gap-2"><Briefcase size={14} /> Core Stack</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {['Python', 'React', 'FastAPI', 'PyTorch', 'Docker', 'TypeScript', 'AWS', 'TailwindCSS'].map(skill => (
-                      <span key={skill} className="px-3 py-1.5 rounded-full text-xs font-medium bg-[var(--card-solid)] border border-[var(--divider-light)] opacity-80">{skill}</span>
-                    ))}
+            <div className="p-6 lg:p-8">
+              <div className="flex flex-col lg:flex-row gap-8 items-start">
+
+                {/* Avatar + name */}
+                <div className="flex-shrink-0 flex flex-col items-center lg:items-start gap-2">
+                  <motion.div
+                    whileHover={{ rotate: [0, -4, 4, -2, 0], scale: 1.05 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center text-xl font-bold text-[#0a2e1f] shadow-lg select-none"
+                    style={{ background: 'linear-gradient(135deg, #4ade80 0%, #ccff00 60%, #a3e635 100%)' }}
+                  >
+                    SM
+                  </motion.div>
+                  <div>
+                    <h3 className="text-lg font-medium">Sriharsha Meduri</h3>
+                    <p className="text-xs opacity-40 mt-0.5">3rd yr · IT · AU</p>
                   </div>
                 </div>
 
-                <div className="space-y-3">
+                {/* Middle: bio + terminal block */}
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-light opacity-70 leading-relaxed mb-3">
+                    One sleep-deprived third-year built this entire site (design, frontend, all of it) because it sounded like a fun problem. It was. Mostly.
+                  </p>
+
+                  {/* Fake terminal */}
+                  <div className="bg-[var(--card-solid)] rounded-xl border border-[var(--divider-light)] overflow-hidden mb-3">
+                    <div className="flex items-center gap-2 px-3 py-1.5 border-b border-[var(--divider-light)] bg-[var(--divider-light)]/30">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-400 opacity-70"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 opacity-70"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-green-400 opacity-70"></span>
+                      <span className="ml-2 text-xs opacity-30 font-mono">build_log.sh</span>
+                    </div>
+                    <div className="px-4 py-3 font-mono text-xs space-y-1">
+                      <div className="flex items-center gap-3 opacity-60">
+                        <span className="text-[var(--accent)]">▸</span>
+                        <span>coffee_consumed</span>
+                        <span className="ml-auto opacity-40 italic">// yes</span>
+                      </div>
+                      <div className="flex items-center gap-3 opacity-60">
+                        <span className="text-[var(--accent)]">▸</span>
+                        <span>sleep_hours_lost</span>
+                        <span className="ml-auto opacity-40 italic">// significant</span>
+                      </div>
+                      <div className="flex items-center gap-3 opacity-60">
+                        <span className="text-[var(--accent)]">▸</span>
+                        <span>stack_overflow_tabs</span>
+                        <span className="ml-auto opacity-40 italic">// don't ask</span>
+                      </div>
+                      <div className="flex items-center gap-3 opacity-60">
+                        <span className="text-[var(--accent)]">▸</span>
+                        <span>bugs_fixed</span>
+                        <span className="ml-auto opacity-40 italic">// most of them</span>
+                      </div>
+                      <div className="flex items-center gap-3 pt-1 border-t border-[var(--divider-light)] mt-1">
+                        <span className="text-[var(--highlight)]">✓</span>
+                        <span className="text-[var(--highlight)] font-semibold">result</span>
+                        <span className="ml-auto opacity-50 italic">// you're looking at it</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Powered by chips */}
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="text-xs opacity-40 font-medium uppercase tracking-wider mr-1">powered by</span>
+                    {['React', 'TypeScript', 'Tailwind', 'Framer Motion', 'Vite', 'Python'].map(s => (
+                      <span key={s} className="px-3 py-1 rounded-full text-xs font-medium bg-[var(--card-solid)] border border-[var(--divider-light)] opacity-70">{s}</span>
+                    ))}
+                  </div>
+
+                  <p className="text-sm opacity-50 font-light">
+                    Wanna see what else I've built?{' '}
+                    <a href="https://sriharshameduri.in" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] font-medium hover:underline underline-offset-4 transition-all">
+                      sriharshameduri.in ↗
+                    </a>
+                  </p>
+                </div>
+
+                {/* Links sidebar */}
+                <div className="flex-shrink-0 w-full lg:w-48 flex flex-col gap-2 self-center">
                   <a href="https://github.com/Sriharsha-Meduri" target="_blank" rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-3 rounded-2xl bg-[var(--btn)] text-[var(--btn-text)] font-medium text-sm hover:opacity-90 transition-all hover:scale-[1.02] active:scale-95">
-                    <Github size={16} /> GitHub Profile
+                    className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-[var(--btn)] text-[var(--btn-text)] font-medium text-sm hover:opacity-90 transition-all hover:scale-[1.02] active:scale-95">
+                    <Github size={15} /> GitHub
                   </a>
                   <a href="https://linkedin.com/in/sriharsha-meduri" target="_blank" rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full py-3 rounded-2xl bg-[var(--card-solid)] border border-[var(--divider-light)] font-medium text-sm hover:bg-[var(--card-hover)] transition-all hover:scale-[1.02] active:scale-95">
-                    <ExternalLink size={16} /> LinkedIn
-                  </a>
-                  <a href="mailto:sriharshameduri07@gmail.com"
-                    className="flex items-center justify-center gap-2 w-full py-3 rounded-2xl bg-[var(--card-solid)] border border-[var(--divider-light)] font-medium text-sm hover:bg-[var(--card-hover)] transition-all hover:scale-[1.02] active:scale-95 opacity-70">
-                    sriharshameduri07@gmail.com
+                    className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-[var(--card-solid)] border border-[var(--divider-light)] font-medium text-sm hover:bg-[var(--card-hover)] transition-all hover:scale-[1.02] active:scale-95">
+                    <ExternalLink size={15} /> LinkedIn
                   </a>
                 </div>
+
               </div>
             </div>
           </div>

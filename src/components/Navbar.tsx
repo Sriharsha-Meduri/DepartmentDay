@@ -1,12 +1,13 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { X, Menu, Sun, Moon } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useApp } from '../context/AppContext';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pendingScroll = useRef<string | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
   const { darkMode, toggleDarkMode } = useApp();
@@ -18,6 +19,31 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Fire pending scroll once we've actually landed on '/'
+  // 1. Wait 150ms for ScrollToTop + React paint to settle.
+  // 2. Jump to the section.
+  // 3. Nudge 1px down then back up across two rAFs — this forces every
+  //    IntersectionObserver (including Framer Motion's whileInView) to
+  //    re-evaluate the new viewport, so no elements stay invisible.
+  useEffect(() => {
+    if (location.pathname === '/' && pendingScroll.current) {
+      const id = pendingScroll.current;
+      pendingScroll.current = null;
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'instant', block: 'start' });
+          requestAnimationFrame(() => {
+            window.scrollBy({ top: 1, behavior: 'instant' });
+            requestAnimationFrame(() => {
+              window.scrollBy({ top: -1, behavior: 'instant' });
+            });
+          });
+        }
+      }, 150);
+    }
+  }, [location.pathname]);
 
   const pageLinks = [
     { name: 'Home', path: '/' },
@@ -33,11 +59,8 @@ export function Navbar() {
   const scrollToSection = (id: string) => {
     setIsOpen(false);
     if (location.pathname !== '/') {
+      pendingScroll.current = id;
       navigate('/');
-      setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 500);
     } else {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -56,13 +79,21 @@ export function Navbar() {
             : 'py-6 bg-transparent'
         } flex justify-between items-center`}
       >
-        <Link to="/" className="flex items-center gap-2 text-xl font-medium tracking-tight hover:opacity-80 transition-opacity text-[var(--text)]">
+        <Link
+          to="/"
+          onClick={() => {
+            if (location.pathname === '/') {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}
+          className="flex items-center gap-2 text-xl font-medium tracking-tight hover:opacity-80 transition-opacity text-[var(--text)]"
+        >
           <div className="flex gap-[3px]">
             <div className="w-[3px] h-5 bg-[var(--text)] rounded-full"></div>
             <div className="w-[3px] h-5 bg-[var(--text)] rounded-full opacity-70"></div>
             <div className="w-[3px] h-5 bg-[var(--text)] rounded-full opacity-40"></div>
           </div>
-          DeptDay '26
+          Udbhav '26
         </Link>
         
         {/* Desktop Nav */}
@@ -71,6 +102,11 @@ export function Navbar() {
             <Link 
               key={link.path} 
               to={link.path}
+              onClick={() => {
+                if (link.path === '/' && location.pathname === '/') {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
               className={`relative hover:text-[var(--accent)] transition-colors ${location.pathname === link.path ? 'text-[var(--accent)]' : 'text-[var(--text)]'}`}
             >
               {link.name}
@@ -158,7 +194,12 @@ export function Navbar() {
                 >
                   <Link 
                     to={link.path}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setIsOpen(false);
+                      if (link.path === '/' && location.pathname === '/') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
                     className={`hover:text-[var(--accent)] transition-colors ${location.pathname === link.path ? 'text-[var(--accent)]' : 'text-[var(--text)]'}`}
                   >
                     {link.name}

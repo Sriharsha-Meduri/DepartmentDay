@@ -31,7 +31,7 @@ export function Events() {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl lg:text-7xl font-medium tracking-tight mb-4"
           >
-            Events
+            Pick your battle ⚔️
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -39,7 +39,7 @@ export function Events() {
             transition={{ delay: 0.1 }}
             className="text-lg opacity-60 font-light max-w-lg"
           >
-            Technical events are live now — more events across sports, culture & more are being announced soon. Register for what's open and check back for updates.
+            Technical events are live now. More events across sports, culture and more are being announced soon. Register for what's open and check back for updates.
           </motion.p>
         </div>
 
@@ -112,9 +112,11 @@ export function Events() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="col-span-full py-20 text-center opacity-60 font-light text-xl"
+              className="col-span-full py-20 text-center font-light"
             >
-              No events found matching your criteria.
+              <div className="text-5xl mb-4">🕵️</div>
+              <p className="text-xl opacity-60">Nothing matched that search.</p>
+              <p className="text-sm opacity-40 mt-2">Try a different keyword. Or just browse everything. They're all worth it.</p>
             </motion.div>
           ) : (
             filteredEvents.map((event) => (
@@ -153,9 +155,7 @@ export function Events() {
                       <div className="text-sm font-medium opacity-80">
                         {new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} &bull; {event.time}
                       </div>
-                      <div className="text-xs font-light opacity-60">
-                        {event.registeredCount} Registered
-                      </div>
+
                     </div>
                     <Link to={`/event/${event.id}`}>
                       <motion.div 
@@ -178,11 +178,15 @@ export function Events() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="mt-8 rounded-3xl border-2 border-dashed border-[var(--divider)] flex flex-col items-center justify-center py-16 px-8 text-center"
+          className="mt-8 rounded-3xl border-2 border-dashed border-[var(--divider)] flex flex-col items-center justify-center py-12 px-8 text-center"
         >
-          <div className="text-3xl mb-3">🎉</div>
-          <h3 className="text-xl font-medium mb-2">More Events Coming Soon</h3>
-          <p className="opacity-50 font-light text-sm max-w-sm">Sports, cultural, and other exciting events are yet to be announced. Stay tuned — this page will update as more events are added.</p>
+          <motion.div
+            animate={{ rotate: [0, -10, 10, -6, 6, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
+            className="text-4xl mb-3 inline-block"
+          >🔜</motion.div>
+          <h3 className="text-xl font-medium mb-2">More dropping soon</h3>
+          <p className="opacity-50 font-light text-sm max-w-sm">Sports. Cultural. Other stuff we can't announce yet. Keep checking back, this page isn't done filling up.</p>
         </motion.div>
       </motion.div>
     </div>

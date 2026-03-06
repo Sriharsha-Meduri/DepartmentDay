@@ -7,7 +7,7 @@ import { useApp } from '../context/AppContext';
 export function Layout() {
   const location = useLocation();
   const { darkMode } = useApp();
-  
+
   return (
     <div className={`min-h-screen bg-[var(--bg)] text-[var(--text)] font-sans overflow-x-hidden flex flex-col transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
       <Navbar />
