@@ -21,7 +21,7 @@ export function Events() {
   }, [search, sortBy]);
 
   return (
-    <div className="pt-32 pb-24 px-8 lg:px-16 max-w-[1600px] mx-auto min-h-screen">
+    <div className="pt-24 sm:pt-32 pb-16 sm:pb-24 px-5 sm:px-8 lg:px-16 max-w-[1600px] mx-auto min-h-screen">
       
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16">
@@ -29,7 +29,7 @@ export function Events() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl lg:text-7xl font-medium tracking-tight mb-4"
+            className="text-4xl sm:text-5xl lg:text-7xl font-medium tracking-tight mb-4"
           >
             Pick your battle ⚔️
           </motion.h1>

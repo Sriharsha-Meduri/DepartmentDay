@@ -49,20 +49,20 @@ export function Home() {
   return (
     <div ref={containerRef}>
       {/* ===== HERO SECTION ===== */}
-      <section className="relative min-h-screen flex flex-col pt-24 pb-12 px-8 lg:px-16 max-w-[1600px] mx-auto w-full">
+      <section className="relative min-h-screen flex flex-col pt-24 pb-12 px-5 sm:px-8 lg:px-16 max-w-[1600px] mx-auto w-full">
         <main className="flex-1 flex flex-col lg:flex-row items-center justify-between relative w-full">
-          <motion.div style={{ y: heroY, opacity: heroOpacity }} className="lg:w-1/2 z-10 relative pt-12 lg:pt-0">
+          <motion.div style={{ y: heroY, opacity: heroOpacity }} className="lg:w-1/2 z-10 relative pt-4 sm:pt-10 lg:pt-0">
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }} 
               animate={{ opacity: 1, scale: 1 }} 
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--divider)] text-sm font-medium mb-6 bg-[var(--card)] backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--divider)] text-[0.7rem] sm:text-sm font-medium mb-5 sm:mb-6 bg-[var(--card)] backdrop-blur-sm"
             >
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse-dot inline-block"></span>
               April 8, 2026 · IT Department Day · it's happening 🎉
             </motion.div>
 
-            <motion.h1 variants={textContainer} initial="hidden" animate="show" className="text-[4rem] sm:text-[5rem] lg:text-[6rem] font-medium leading-[0.95] tracking-[-0.03em] mb-8 perspective-1000">
+            <motion.h1 variants={textContainer} initial="hidden" animate="show" className="text-[2.6rem] sm:text-[4rem] lg:text-[6rem] font-medium leading-[0.95] tracking-[-0.03em] mb-5 sm:mb-8 perspective-1000">
               <motion.div variants={textItem} className="origin-bottom">Create.</motion.div>
               <motion.div variants={textItem} className="origin-bottom">Compete.</motion.div>
               <motion.div variants={textItem} className="origin-bottom animate-text-shimmer">Celebrate.</motion.div>
@@ -72,7 +72,7 @@ export function Home() {
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, delay: 0.4 }} 
-              className="text-lg lg:text-xl opacity-70 max-w-md mb-10 leading-relaxed font-light"
+              className="text-sm sm:text-lg lg:text-xl opacity-70 max-w-md mb-7 sm:mb-10 leading-relaxed font-light"
             >
               The IT Department's biggest day is here. Four technical events are open right now: quiz your knowledge, code your way out, design something brilliant, or hunt for flags. More events coming soon. No fees. No excuses.
             </motion.p>
@@ -82,16 +82,16 @@ export function Home() {
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, delay: 0.5 }} 
-              className="flex gap-4 mb-10"
+              className="flex gap-2 sm:gap-4 mb-7 sm:mb-10"
             >
               {Object.entries(timeLeft).map(([unit, value]) => (
                 <motion.div 
                   key={unit} 
                   whileHover={{ y: -5, scale: 1.05 }} 
                   transition={{ type: "spring", stiffness: 400, damping: 10 }} 
-                  className="flex flex-col items-center justify-center bg-[var(--card)] backdrop-blur-md rounded-2xl w-20 h-20 border border-[var(--card-border)] shadow-sm"
+                  className="flex flex-col items-center justify-center bg-[var(--card)] backdrop-blur-md rounded-2xl w-14 h-14 sm:w-20 sm:h-20 border border-[var(--card-border)] shadow-sm"
                 >
-                  <span className="text-2xl font-bold">{value.toString().padStart(2, '0')}</span>
+                  <span className="text-base sm:text-2xl font-bold">{value.toString().padStart(2, '0')}</span>
                   <span className="text-xs uppercase tracking-wider opacity-70">{unit}</span>
                 </motion.div>
               ))}
@@ -132,7 +132,7 @@ export function Home() {
           </motion.div>
 
           {/* Hero Visual */}
-          <div className="lg:w-1/2 relative h-[500px] lg:h-[700px] w-full mt-12 lg:mt-0 flex items-center justify-center">
+          <div className="lg:w-1/2 relative h-[260px] sm:h-[400px] lg:h-[700px] w-full mt-6 sm:mt-12 lg:mt-0 flex items-center justify-center">
             <div className="relative w-full max-w-[500px] aspect-square flex items-center justify-center">
               <motion.div 
                 className="absolute w-[75%] h-[75%] rounded-full z-10" 
@@ -161,7 +161,7 @@ export function Home() {
                 <span className="w-2 h-2 rounded-full bg-blue-400"></span> Quiz Blitz · Mar 9
               </motion.div>
               <motion.div
-                className="absolute top-[38%] right-[-4%] z-40 bg-[var(--highlight)] text-[#0a2e1f] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-bold flex items-center gap-2 animate-float-slow"
+                className="absolute top-[38%] right-[-4%] z-40 bg-[var(--highlight)] text-[#0a2e1f] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-bold flex items-center gap-2 animate-float-slow hero-chip-right-overflow"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.2, duration: 0.6 }}
@@ -169,7 +169,7 @@ export function Home() {
                 ⚡ Coding Contest · Mar 10
               </motion.div>
               <motion.div
-                className="absolute bottom-[28%] right-[0%] z-40 bg-[var(--card-solid)] border border-[var(--divider-light)] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-semibold flex items-center gap-2 animate-float"
+                className="absolute bottom-[28%] right-[0%] z-40 bg-[var(--card-solid)] border border-[var(--divider-light)] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-semibold flex items-center gap-2 animate-float hero-chip-right-overflow"
                 style={{ animationDelay: '1s' }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -221,10 +221,10 @@ export function Home() {
       <HowItWorks />
 
       {/* ===== FEATURED EVENTS ===== */}
-      <section className="py-16 px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20">
+      <section className="py-16 px-5 sm:px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20">
         <div className="mb-10 flex flex-col md:flex-row justify-between items-end gap-8">
           <div>
-            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} className="text-4xl lg:text-5xl font-medium tracking-tight mb-4">
+            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight mb-4">
               The lineup ⚔️
             </motion.h2>
             <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ delay: 0.1 }} className="text-lg opacity-70 max-w-2xl font-light">
@@ -282,9 +282,9 @@ export function Home() {
       <TestimonialsSection />
 
       {/* ===== MADE WITH LOVE BY ===== */}
-      <section className="py-16 px-8 lg:px-16 max-w-[1600px] mx-auto">
+      <section className="py-16 px-5 sm:px-8 lg:px-16 max-w-[1600px] mx-auto">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 className="text-4xl lg:text-5xl font-medium tracking-tight mb-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight mb-6 sm:mb-8">
             Made with <span className="text-[var(--accent)]">love</span> by
           </h2>
 
@@ -293,7 +293,7 @@ export function Home() {
             <div className="h-1 w-full bg-gradient-to-r from-[var(--accent)] via-[var(--highlight)] to-purple-400" />
 
             <div className="p-6 lg:p-8">
-              <div className="flex flex-col lg:flex-row gap-8 items-start">
+              <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 items-start">
 
                 {/* Avatar + name */}
                 <div className="flex-shrink-0 flex flex-col items-center lg:items-start gap-2">

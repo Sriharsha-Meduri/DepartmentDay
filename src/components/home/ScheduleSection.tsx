@@ -46,13 +46,13 @@ const SCHEDULE = [
 
 export function ScheduleSection() {
   return (
-    <section id="schedule" className="py-16 px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20 scroll-mt-24">
+    <section id="schedule" className="py-16 px-5 sm:px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20 scroll-mt-24">
       <div className="mb-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          className="text-4xl lg:text-5xl font-medium tracking-tight mb-4"
+          className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight mb-4"
         >
           Lock in your dates 📅
         </motion.h2>
@@ -90,7 +90,7 @@ export function ScheduleSection() {
               className="flex gap-6 items-start group"
             >
               {/* Date + time column */}
-              <div className="w-28 flex-shrink-0 pt-5 space-y-1 relative">
+              <div className="schedule-date-col w-28 flex-shrink-0 pt-5 space-y-1 relative">
                 <div className="flex items-center gap-1.5 text-sm font-semibold text-[var(--accent)]">
                   <Calendar size={13} />
                   {item.date}

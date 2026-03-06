@@ -41,7 +41,7 @@ export function EventDetail() {
           <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/40 to-transparent" />
         </motion.div>
-        <div className="absolute inset-0 px-8 lg:px-16 max-w-[1600px] mx-auto flex flex-col justify-end pb-12 pt-24">
+        <div className="absolute inset-0 px-5 sm:px-8 lg:px-16 max-w-[1600px] mx-auto flex flex-col justify-end pb-6 sm:pb-12 pt-20 sm:pt-24">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
             <Link to="/events" className="inline-flex items-center gap-2 text-sm font-medium hover:text-[var(--accent)] transition-colors mb-8 bg-[var(--card)] backdrop-blur-md px-4 py-2 rounded-full border border-[var(--card-border)] w-fit">
               <ArrowLeft size={16} /> Back to Events
@@ -52,14 +52,14 @@ export function EventDetail() {
               {event.category}
             </motion.span>
           </div>
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.6 }} className="text-5xl lg:text-7xl font-medium tracking-tight">
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.6 }} className="text-3xl sm:text-5xl lg:text-7xl font-medium tracking-tight">
             {event.title}
           </motion.h1>
         </div>
       </div>
 
       {/* Content Grid */}
-      <div className="px-8 lg:px-16 max-w-[1600px] mx-auto mt-12">
+      <div className="px-5 sm:px-8 lg:px-16 max-w-[1600px] mx-auto mt-6 sm:mt-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-12">

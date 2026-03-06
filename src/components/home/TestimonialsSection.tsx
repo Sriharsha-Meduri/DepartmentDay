@@ -55,7 +55,7 @@ const TESTIMONIALS = [
 
 function TestimonialCard({ t }: { t: typeof TESTIMONIALS[number] }) {
   return (
-    <div className="w-80 flex-shrink-0 bg-[var(--card)] backdrop-blur-md rounded-3xl p-6 border border-[var(--card-border)] flex flex-col gap-4 mx-3 hover:bg-[var(--card-hover)] transition-colors card-shine-wrap">
+    <div className="testimonial-card w-80 flex-shrink-0 bg-[var(--card)] backdrop-blur-md rounded-3xl p-6 border border-[var(--card-border)] flex flex-col gap-4 mx-3 hover:bg-[var(--card-hover)] transition-colors card-shine-wrap">
       <div className="flex items-start justify-between">
         <div className="flex gap-0.5">
           {Array.from({ length: 5 }).map((_, j) => (
@@ -86,12 +86,12 @@ export function TestimonialsSection() {
   return (
     <section className="py-16 px-0 relative z-20 overflow-hidden">
       {/* Heading */}
-      <div className="px-8 lg:px-16 max-w-[1600px] mx-auto mb-10">
+      <div className="px-5 sm:px-8 lg:px-16 max-w-[1600px] mx-auto mb-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
-          className="text-4xl lg:text-5xl font-medium tracking-tight mb-4"
+          className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight mb-4"
         >
           What they said last time 💬
         </motion.h2>

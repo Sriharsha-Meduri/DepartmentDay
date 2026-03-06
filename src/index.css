@@ -180,3 +180,19 @@ body {
   95%           { transform: rotate(-4deg); }
 }
 .animate-wobble-loop { animation: wobble-loop 3s ease-in-out infinite; }
+
+/* ========== Mobile-specific overrides (≤ 480px) ========== */
+@media (max-width: 480px) {
+
+  /* Stats: keep 2-col but tighten padding */
+  .stats-card { padding: 1.25rem !important; }
+
+  /* Schedule: shrink the date column so card has more room */
+  .schedule-date-col { width: 5.5rem !important; }
+
+  /* Testimonial cards: slightly narrower on tiny screens */
+  .testimonial-card { width: 17rem !important; }
+
+  /* Event chips in hero: hide the two off-screen ones to avoid overflow */
+  .hero-chip-right-overflow { display: none !important; }
+}

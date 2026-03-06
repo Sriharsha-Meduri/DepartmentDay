@@ -3,13 +3,13 @@ import { Mail, Phone, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-[var(--footer-bg)] text-[var(--footer-text)] py-16 px-8 lg:px-16 mt-20 rounded-t-[3rem] mx-4 lg:mx-8 mb-4 transition-colors duration-300">
+    <footer className="bg-[var(--footer-bg)] text-[var(--footer-text)] py-10 sm:py-16 px-5 sm:px-8 lg:px-16 mt-16 sm:mt-20 rounded-t-[2rem] sm:rounded-t-[3rem] mx-2 sm:mx-4 lg:mx-8 mb-2 sm:mb-4 transition-colors duration-300">
       <div className="max-w-[1600px] mx-auto">
         {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-10 sm:mb-16">
           {/* Brand & About */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 text-2xl font-medium tracking-tight mb-6">
+          <div className="col-span-2 sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center gap-2 text-xl sm:text-2xl font-medium tracking-tight mb-4 sm:mb-6">
               <div className="flex gap-[3px]">
                 <div className="w-[3px] h-6 bg-[var(--highlight)] rounded-full"></div>
                 <div className="w-[3px] h-6 bg-[var(--highlight)] rounded-full opacity-70"></div>
@@ -90,7 +90,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 opacity-50 font-light text-sm">
+        <div className="pt-6 sm:pt-8 border-t border-white/10 flex flex-col items-center gap-2 sm:gap-4 opacity-50 font-light text-xs sm:text-sm text-center">
           <p>&copy; 2026 Department Day. All rights reserved.</p>
           <p className="opacity-50">Made with ☕, questionable sleep schedules, and a lot of <span className="text-[var(--highlight)] opacity-100">love</span>. By IT students, for IT students.</p>
         </div>
