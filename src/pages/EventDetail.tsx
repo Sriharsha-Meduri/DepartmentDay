@@ -118,6 +118,17 @@ export function EventDetail() {
               <p className="text-sm opacity-50 font-light text-center">All participants will receive a Certificate of Participation. Special mentions may be awarded at the coordinator's discretion for outstanding effort or sportsmanship.</p>
             </motion.section>
 
+            {/* Quick Tips */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.5 }} className="bg-[var(--btn)] text-[var(--btn-text)] rounded-3xl p-8">
+              <h3 className="text-xl font-medium mb-4">Quick Tips</h3>
+              <ul className="space-y-3 text-sm font-light opacity-80">
+                <li className="flex items-start gap-3"><span className="text-[var(--highlight)] mt-0.5">1.</span>Arrive at least 15 minutes before the scheduled start time to complete check-in.</li>
+                <li className="flex items-start gap-3"><span className="text-[var(--highlight)] mt-0.5">2.</span>Carry your college ID card and registration confirmation for verification.</li>
+                <li className="flex items-start gap-3"><span className="text-[var(--highlight)] mt-0.5">3.</span>Read through all the rules carefully before the event begins.</li>
+                <li className="flex items-start gap-3"><span className="text-[var(--highlight)] mt-0.5">4.</span>Stay hydrated and take breaks if needed. Your well-being comes first.</li>
+              </ul>
+            </motion.div>
+
           </div>
 
           {/* Sidebar */}
@@ -166,29 +177,6 @@ export function EventDetail() {
                 <Phone size={16} /> {event.coordinator.contact}
               </div>
               <p className="text-sm opacity-50 font-light leading-relaxed">For any queries regarding this event, feel free to reach out to the coordinator directly. They are happy to help with questions about rules, team formation, or venue details.</p>
-            </motion.div>
-
-            {/* Quick Tips Card */}
-            <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.6 }} className="bg-[var(--btn)] text-[var(--btn-text)] rounded-3xl p-8">
-              <h3 className="text-xl font-medium mb-4">Quick Tips</h3>
-              <ul className="space-y-3 text-sm font-light opacity-80">
-                <li className="flex items-start gap-3">
-                  <span className="text-[var(--highlight)] mt-0.5">1.</span>
-                  Arrive at least 15 minutes before the scheduled start time to complete check-in.
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[var(--highlight)] mt-0.5">2.</span>
-                  Carry your college ID card and registration confirmation for verification.
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[var(--highlight)] mt-0.5">3.</span>
-                  Read through all the rules carefully before the event begins.
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-[var(--highlight)] mt-0.5">4.</span>
-                  Stay hydrated and take breaks if needed. Your well-being comes first.
-                </li>
-              </ul>
             </motion.div>
           </div>
         </div>
