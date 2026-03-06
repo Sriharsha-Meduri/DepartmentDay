@@ -1,22 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, ArrowDown, Sparkles, Layers, Zap, ArrowRight, Clock, MapPin } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, ArrowRight, Clock, MapPin, Code2, ExternalLink, Github, CheckCircle2, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { GlassBars } from '../components/GlassBars';
-import { useApp } from '../context/AppContext';
 import { MOCK_EVENTS } from '../data/mock';
 import { StatsSection } from '../components/home/StatsSection';
 import { HowItWorks } from '../components/home/HowItWorks';
 import { ScheduleSection } from '../components/home/ScheduleSection';
-import { TestimonialsSection } from '../components/home/TestimonialsSection';
 import { FaqSection } from '../components/home/FaqSection';
-
-const CATEGORIES = [
-  { icon: Sparkles, title: "Technical", desc: "Put your problem-solving skills to the test with coding competitions, hackathons, debugging challenges, and tech quizzes. Perfect for those who think in algorithms and dream in code.", color: "bg-blue-100 text-blue-800", cat: 'TECHNICAL' as const },
-  { icon: Layers, title: "Non-Technical", desc: "Showcase your creativity and communication through debates, essay writing, quiz bowls, and artistic performances. No coding required, just raw talent and quick thinking.", color: "bg-purple-100 text-purple-800", cat: 'NON-TECHNICAL' as const },
-  { icon: Zap, title: "Indoor", desc: "Strategic minds and steady hands take center stage with chess tournaments, table tennis matches, carrom battles, and board game showdowns in climate-controlled comfort.", color: "bg-orange-100 text-orange-800", cat: 'INDOOR' as const },
-  { icon: ArrowUpRight, title: "Outdoor", desc: "Burn off that energy on the field with futsal, relay races, tug of war, and athletics. These events reward speed, strength, teamwork, and sheer determination.", color: "bg-green-100 text-green-800", cat: 'OUTDOOR' as const }
-];
 
 const textContainer = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } } };
 const textItem = { hidden: { opacity: 0, y: 40, rotateX: -20 }, show: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } };
@@ -25,7 +16,6 @@ export function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
-  const { setSection } = useApp();
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -39,7 +29,7 @@ export function Home() {
   }, []);
 
   useEffect(() => {
-    const targetDate = new Date('2026-04-15T00:00:00').getTime();
+    const targetDate = new Date('2026-04-08T00:00:00').getTime();
     const interval = setInterval(() => {
       const distance = targetDate - Date.now();
       if (distance < 0) { clearInterval(interval); return; }
@@ -61,81 +51,170 @@ export function Home() {
       <section className="relative min-h-screen flex flex-col pt-24 pb-12 px-8 lg:px-16 max-w-[1600px] mx-auto w-full">
         <main className="flex-1 flex flex-col lg:flex-row items-center justify-between relative w-full">
           <motion.div style={{ y: heroY, opacity: heroOpacity }} className="lg:w-1/2 z-10 relative pt-12 lg:pt-0">
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="inline-block px-4 py-1.5 rounded-full border border-[#0a2e1f]/20 text-sm font-medium mb-6 bg-white/20 backdrop-blur-sm">
-              April 15-16, 2026 | Department Day
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }} 
+              animate={{ opacity: 1, scale: 1 }} 
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--divider)] text-sm font-medium mb-6 bg-[var(--card)] backdrop-blur-sm"
+            >
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse-dot inline-block"></span>
+              April 8, 2026 · IT Department Day
             </motion.div>
+
             <motion.h1 variants={textContainer} initial="hidden" animate="show" className="text-[4rem] sm:text-[5rem] lg:text-[6rem] font-medium leading-[0.95] tracking-[-0.03em] mb-8 perspective-1000">
-              <motion.div variants={textItem} className="origin-bottom">Celebrate</motion.div>
-              <motion.div variants={textItem} className="origin-bottom">Excellence &</motion.div>
-              <motion.div variants={textItem} className="origin-bottom">Innovation.</motion.div>
+              <motion.div variants={textItem} className="origin-bottom">Create.</motion.div>
+              <motion.div variants={textItem} className="origin-bottom">Compete.</motion.div>
+              <motion.div variants={textItem} className="origin-bottom text-[var(--accent)]">Celebrate.</motion.div>
             </motion.h1>
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-lg lg:text-xl opacity-70 max-w-md mb-10 leading-relaxed font-light">
-              Two days of fierce competition, creative expression, and unforgettable moments. From coding battles to athletic showdowns, Department Day 2026 brings together the best talent across every discipline.
+
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.8, delay: 0.4 }} 
+              className="text-lg lg:text-xl opacity-70 max-w-md mb-10 leading-relaxed font-light"
+            >
+              The IT Department's biggest day is here. Technical events are live — quizzes, coding, design & cybersecurity. More events (sports, cultural & more) are dropping soon. Built by students, for students.
             </motion.p>
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="flex gap-4 mb-10">
+
+            {/* Countdown Timer */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.8, delay: 0.5 }} 
+              className="flex gap-4 mb-10"
+            >
               {Object.entries(timeLeft).map(([unit, value]) => (
-                <motion.div key={unit} whileHover={{ y: -5, scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 10 }} className="flex flex-col items-center justify-center bg-white/40 backdrop-blur-md rounded-2xl w-20 h-20 border border-white/50 shadow-sm">
+                <motion.div 
+                  key={unit} 
+                  whileHover={{ y: -5, scale: 1.05 }} 
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }} 
+                  className="flex flex-col items-center justify-center bg-[var(--card)] backdrop-blur-md rounded-2xl w-20 h-20 border border-[var(--card-border)] shadow-sm"
+                >
                   <span className="text-2xl font-bold">{value.toString().padStart(2, '0')}</span>
                   <span className="text-xs uppercase tracking-wider opacity-70">{unit}</span>
                 </motion.div>
               ))}
             </motion.div>
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }} className="flex flex-wrap items-center gap-4">
-              <Link to="/events" onClick={() => setSection('BOYS')}>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-[#0a2e1f] text-[#dcfce7] pl-6 pr-2 py-2 rounded-full flex items-center gap-4 font-medium hover:bg-[#0a2e1f]/90 transition-colors group">
-                  Boys Section
-                  <div className="w-10 h-10 rounded-full bg-[#ccff00] text-[#0a2e1f] flex items-center justify-center group-hover:scale-110 transition-transform"><ArrowUpRight size={20} /></div>
+
+            {/* CTA Buttons */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.8, delay: 0.6 }} 
+              className="flex flex-wrap items-center gap-4"
+            >
+              <Link to="/events">
+                <motion.div 
+                  whileHover={{ scale: 1.05 }} 
+                  whileTap={{ scale: 0.95 }} 
+                  className="bg-[var(--btn)] text-[var(--btn-text)] pl-6 pr-2 py-2 rounded-full flex items-center gap-4 font-medium hover:opacity-90 transition-all group"
+                >
+                  Explore Events
+                  <div className="w-10 h-10 rounded-full bg-[var(--highlight)] text-[#0a2e1f] flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <ArrowUpRight size={20} />
+                  </div>
                 </motion.div>
               </Link>
-              <Link to="/events" onClick={() => setSection('GIRLS')}>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="bg-white/50 backdrop-blur-md text-[#0a2e1f] pl-6 pr-2 py-2 rounded-full flex items-center gap-4 font-medium hover:bg-white/70 transition-colors border border-[#0a2e1f]/10 group">
-                  Girls Section
-                  <div className="w-10 h-10 rounded-full bg-[#0a2e1f] text-[#dcfce7] flex items-center justify-center group-hover:scale-110 transition-transform"><ArrowUpRight size={20} /></div>
+              <Link to="/events">
+                <motion.div 
+                  whileHover={{ scale: 1.05 }} 
+                  whileTap={{ scale: 0.95 }} 
+                  className="bg-[var(--card)] backdrop-blur-md text-[var(--text)] pl-6 pr-2 py-2 rounded-full flex items-center gap-4 font-medium hover:bg-[var(--card-hover)] transition-colors border border-[var(--card-border)] group"
+                >
+                  Register Now
+                  <div className="w-10 h-10 rounded-full bg-[var(--btn)] text-[var(--btn-text)] flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <ArrowRight size={20} />
+                  </div>
                 </motion.div>
               </Link>
             </motion.div>
           </motion.div>
+
+          {/* Hero Visual */}
           <div className="lg:w-1/2 relative h-[500px] lg:h-[700px] w-full mt-12 lg:mt-0 flex items-center justify-center">
             <div className="relative w-full max-w-[500px] aspect-square flex items-center justify-center">
-              <motion.div className="absolute w-[75%] h-[75%] rounded-full z-10" style={{ background: 'radial-gradient(circle at 35% 35%, #aaffaa 0%, #00ff44 25%, #00aa22 80%, #004411 100%)', boxShadow: '0 20px 50px rgba(0,255,68,0.3)' }} animate={{ x: mousePosition.x * -40, y: mousePosition.y * -40 }} transition={{ type: "spring", stiffness: 40, damping: 20 }} />
+              <motion.div 
+                className="absolute w-[75%] h-[75%] rounded-full z-10" 
+                style={{ background: 'radial-gradient(circle at 35% 35%, #aaffaa 0%, #00ff44 25%, #00aa22 80%, #004411 100%)', boxShadow: '0 20px 50px rgba(0,255,68,0.3)' }} 
+                animate={{ x: mousePosition.x * -40, y: mousePosition.y * -40 }} 
+                transition={{ type: "spring", stiffness: 40, damping: 20 }} 
+              />
               <GlassBars />
-              <motion.div className="absolute w-[20%] h-[20%] rounded-full z-30 bottom-[10%] left-[10%]" style={{ background: 'radial-gradient(circle at 30% 30%, #ffff66 0%, #ccff00 40%, #88aa00 80%, #445500 100%)', boxShadow: '0 10px 30px rgba(204,255,0,0.4)' }} animate={{ x: mousePosition.x * 50, y: mousePosition.y * 50, rotate: mousePosition.x * 30 }} transition={{ type: "spring", stiffness: 30, damping: 15 }}>
+              <motion.div 
+                className="absolute w-[20%] h-[20%] rounded-full z-30 bottom-[10%] left-[10%]" 
+                style={{ background: 'radial-gradient(circle at 30% 30%, #ffff66 0%, #ccff00 40%, #88aa00 80%, #445500 100%)', boxShadow: '0 10px 30px rgba(204,255,0,0.4)' }} 
+                animate={{ x: mousePosition.x * 50, y: mousePosition.y * 50, rotate: mousePosition.x * 30 }} 
+                transition={{ type: "spring", stiffness: 30, damping: 15 }}
+              >
                 <div className="absolute inset-0 rounded-full border border-white/40" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}></div>
                 <div className="absolute inset-0 rounded-full border border-white/20" style={{ clipPath: 'polygon(50% 0%, 80% 50%, 50% 100%, 20% 50%)' }}></div>
+              </motion.div>
+
+              {/* Floating Event Chips */}
+              <motion.div
+                className="absolute top-[8%] right-[2%] z-40 bg-[var(--card-solid)] border border-[var(--divider-light)] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-semibold flex items-center gap-2 animate-float"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1, duration: 0.6 }}
+              >
+                <span className="w-2 h-2 rounded-full bg-blue-400"></span> Quiz Blitz · Mar 9
+              </motion.div>
+              <motion.div
+                className="absolute top-[38%] right-[-4%] z-40 bg-[var(--highlight)] text-[#0a2e1f] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-bold flex items-center gap-2 animate-float-slow"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.2, duration: 0.6 }}
+              >
+                ⚡ Coding Contest · Mar 10
+              </motion.div>
+              <motion.div
+                className="absolute bottom-[28%] right-[0%] z-40 bg-[var(--card-solid)] border border-[var(--divider-light)] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-semibold flex items-center gap-2 animate-float"
+                style={{ animationDelay: '1s' }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.4, duration: 0.6 }}
+              >
+                <span className="w-2 h-2 rounded-full bg-purple-400"></span> Vibeathon · Mar 17
+              </motion.div>
+              <motion.div
+                className="absolute bottom-[8%] right-[12%] z-40 bg-[var(--btn)] text-[var(--btn-text)] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-semibold flex items-center gap-2 animate-float-slow"
+                style={{ animationDelay: '2s' }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.6, duration: 0.6 }}
+              >
+                🔐 Cyber Hunt · Mar 18
               </motion.div>
             </div>
           </div>
         </main>
+
+        {/* Scroll Indicator */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 1 }} className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <motion.button whileHover={{ y: 5 }} className="w-10 h-10 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center hover:bg-white/50 transition-colors shadow-sm border border-[#0a2e1f]/10 text-[#0a2e1f]"><ArrowDown size={18} /></motion.button>
+          <motion.button whileHover={{ y: 5 }} className="w-10 h-10 rounded-full bg-[var(--card)] backdrop-blur-md flex items-center justify-center hover:bg-[var(--card-hover)] transition-colors shadow-sm border border-[var(--card-border)] text-[var(--text)]">
+            <ArrowDown size={18} />
+          </motion.button>
         </motion.div>
       </section>
 
-      {/* ===== STATS ===== */}
-      <StatsSection />
-
-      {/* ===== CATEGORIES ===== */}
-      <section className="py-32 px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20 bg-[#dcfce7]">
-        <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-8">
-          <div>
-            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} className="text-4xl lg:text-5xl font-medium tracking-tight mb-4">Event Categories</motion.h2>
-            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ delay: 0.1 }} className="text-lg opacity-70 max-w-2xl font-light">Four distinct categories designed to challenge every kind of talent. Whether you thrive behind a screen, on the field, at a chessboard, or on stage, there is a place for you here.</motion.p>
-          </div>
-          <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }}>
-            <Link to="/events" className="flex items-center gap-2 font-medium hover:text-[#00aa22] transition-colors group">View all events <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" /></Link>
-          </motion.div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {CATEGORIES.map((cat, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -10, scale: 1.02 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.5, delay: i * 0.1 }} className="bg-white/40 backdrop-blur-lg rounded-3xl p-8 border border-white/50 hover:bg-white/80 transition-colors cursor-pointer group shadow-sm hover:shadow-xl">
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-6 ${cat.color}`}><cat.icon size={24} /></div>
-              <h3 className="text-2xl font-medium mb-3 group-hover:text-[#00aa22] transition-colors">{cat.title}</h3>
-              <p className="opacity-70 font-light leading-relaxed text-sm mb-4">{cat.desc}</p>
-              <div className="text-xs font-medium opacity-50 uppercase tracking-wider">{MOCK_EVENTS.filter(e => e.category === cat.cat).length} Events</div>
-            </motion.div>
+      {/* ===== MARQUEE TICKER ===== */}
+      <div className="overflow-hidden py-3.5 bg-[var(--btn)] text-[var(--btn-text)]">
+        <div className="flex animate-marquee whitespace-nowrap w-max">
+          {[0, 1].map((i) => (
+            <span key={i} className="flex items-center">
+              {['QUIZ BLITZ', 'MARCH 9', 'CODING CONTEST', 'MARCH 10', 'VIBEATHON', 'MARCH 17', 'CYBER HUNT', 'MARCH 18', 'IT DEPARTMENT', 'APRIL 8 2026', 'REGISTER FREE', 'DEPARTMENT DAY'].map((text) => (
+                <span key={text} className="flex items-center">
+                  <span className="text-xs font-bold tracking-[0.2em] uppercase px-5">{text}</span>
+                  <span className="text-[var(--highlight)] text-base">✦</span>
+                </span>
+              ))}
+            </span>
           ))}
         </div>
-      </section>
+      </div>
+
+      {/* ===== STATS ===== */}
+      <StatsSection />
 
       {/* ===== HOW IT WORKS ===== */}
       <HowItWorks />
@@ -144,21 +223,34 @@ export function Home() {
       <section className="py-32 px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20">
         <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-8">
           <div>
-            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} className="text-4xl lg:text-5xl font-medium tracking-tight mb-4">Featured Events</motion.h2>
-            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ delay: 0.1 }} className="text-lg opacity-70 max-w-2xl font-light">A handpicked selection of the most anticipated events this year. These are the ones everyone is talking about, so do not miss your chance to be part of the action.</motion.p>
+            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} className="text-4xl lg:text-5xl font-medium tracking-tight mb-4">
+              All Events
+            </motion.h2>
+            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ delay: 0.1 }} className="text-lg opacity-70 max-w-2xl font-light">
+              Four technical showdowns are live now — more events across sports, culture & more are being announced soon. Register for what's open and stay tuned.
+            </motion.p>
           </div>
           <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }}>
-            <Link to="/events" className="flex items-center gap-2 font-medium hover:text-[#00aa22] transition-colors group">See all events <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" /></Link>
+            <Link to="/events" className="flex items-center gap-2 font-medium hover:text-[var(--accent)] transition-colors group">
+              See all events <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
           </motion.div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {featuredEvents.map((event, i) => (
-            <motion.div key={event.id} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ y: -12, scale: 1.02 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.5, delay: i * 0.1 }} className="bg-white rounded-3xl overflow-hidden shadow-sm border border-[#0a2e1f]/5 flex flex-col group hover:shadow-2xl transition-shadow duration-500">
+            <motion.div 
+              key={event.id} 
+              initial={{ opacity: 0, y: 40 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              whileHover={{ y: -12, scale: 1.02 }} 
+              viewport={{ once: true, margin: "-100px" }} 
+              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }} 
+              className="bg-[var(--card-solid)] rounded-3xl overflow-hidden border border-[var(--divider-light)] flex flex-col group hover:shadow-2xl transition-shadow duration-500"
+            >
               <div className="h-48 overflow-hidden relative">
                 <motion.img whileHover={{ scale: 1.1 }} transition={{ duration: 0.6 }} src={event.image} alt={event.title} className="w-full h-full object-cover" />
                 <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-[#0a2e1f]">{event.category}</span>
-                  <span className="bg-[#ccff00]/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-[#0a2e1f]">{event.section}</span>
+                  <span className="bg-[var(--badge-bg)] backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium">{event.category}</span>
                 </div>
               </div>
               <div className="p-6 flex-1 flex flex-col">
@@ -168,9 +260,11 @@ export function Home() {
                   <span className="flex items-center gap-1"><Clock size={12} /> {event.time}</span>
                   <span className="flex items-center gap-1"><MapPin size={12} /> {event.venue}</span>
                 </div>
-                <div className="flex items-center justify-between pt-4 border-t border-[#0a2e1f]/5">
+                <div className="flex items-center justify-between pt-4 border-t border-[var(--divider-light)]">
                   <div className="text-sm font-medium opacity-60">{event.registeredCount} Registered</div>
-                  <Link to={`/event/${event.id}`} className="w-10 h-10 rounded-full bg-[#0a2e1f]/5 flex items-center justify-center group-hover:bg-[#0a2e1f] group-hover:text-[#dcfce7] transition-colors"><ArrowUpRight size={18} /></Link>
+                  <Link to={`/event/${event.id}`} className="w-10 h-10 rounded-full bg-[var(--divider-light)] flex items-center justify-center group-hover:bg-[var(--btn)] group-hover:text-[var(--btn-text)] transition-colors">
+                    <ArrowUpRight size={18} />
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -181,11 +275,77 @@ export function Home() {
       {/* ===== SCHEDULE ===== */}
       <ScheduleSection />
 
-      {/* ===== TESTIMONIALS ===== */}
-      <TestimonialsSection />
-
       {/* ===== FAQ ===== */}
       <FaqSection />
+
+      {/* ===== MADE WITH LOVE BY ===== */}
+      <section className="py-24 px-8 lg:px-16 max-w-[1600px] mx-auto">
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+          <h2 className="text-4xl lg:text-5xl font-medium tracking-tight mb-12">
+            Made with <span className="text-[var(--accent)]">love</span> by
+          </h2>
+          <div className="bg-[var(--card)] backdrop-blur-md rounded-3xl border border-[var(--card-border)] overflow-hidden shadow-sm hover:shadow-xl transition-shadow">
+            <div className="grid grid-cols-1 lg:grid-cols-3">
+              {/* Main info */}
+              <div className="lg:col-span-2 p-10 border-b lg:border-b-0 lg:border-r border-[var(--card-border)]">
+                <div className="flex items-center gap-3 mb-2">
+                  <Code2 size={22} className="text-[var(--accent)]" />
+                  <h3 className="text-3xl font-medium">Sriharsha Meduri</h3>
+                </div>
+                <p className="text-sm font-medium opacity-50 mb-4 tracking-wide">BTech IT · Andhra University &nbsp;|&nbsp; ML Engineer &nbsp;|&nbsp; Web Developer</p>
+                <p className="opacity-70 font-light leading-relaxed mb-8 max-w-xl">
+                  Built this website for our department's annual fest. I'm a Third-year IT student passionate about ML and web development.
+                </p>
+
+                {/* Achievements */}
+                <div className="bg-[var(--card-solid)] rounded-2xl p-6 border border-[var(--divider-light)]">
+                  <h4 className="text-sm font-semibold text-[var(--accent)] uppercase tracking-wider mb-4">Key Highlights</h4>
+                  <ul className="space-y-3">
+                    {[
+                      { bold: 'Winner', rest: ' — National Cybersecurity Hackathon, Ministry of Electronics & IT (MeitY)' },
+                      { bold: 'Top 5 Finalist', rest: ' — MumbaiHacks 2025, competing among top national teams' },
+                      { bold: 'Research Intern at IIM Shillong', rest: ' — Financial NLP: 16x faster than DistilBERT at same accuracy' },
+                      { bold: 'Co-Lead', rest: ' — GDSC Cybersecurity Chapter' },
+                    ].map((item, i) => (
+                      <motion.li key={i} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="flex items-start gap-3">
+                        <CheckCircle2 size={16} className="text-[var(--accent)] flex-shrink-0 mt-0.5" />
+                        <span className="text-sm font-light opacity-80"><strong className="font-semibold opacity-100">{item.bold}</strong>{item.rest}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Sidebar: skills + links */}
+              <div className="p-10 flex flex-col justify-between gap-8">
+                <div>
+                  <h4 className="text-sm font-semibold opacity-40 uppercase tracking-wider mb-4 flex items-center gap-2"><Briefcase size={14} /> Core Stack</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {['Python', 'React', 'FastAPI', 'PyTorch', 'Docker', 'TypeScript', 'AWS', 'TailwindCSS'].map(skill => (
+                      <span key={skill} className="px-3 py-1.5 rounded-full text-xs font-medium bg-[var(--card-solid)] border border-[var(--divider-light)] opacity-80">{skill}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <a href="https://github.com/Sriharsha-Meduri" target="_blank" rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-2xl bg-[var(--btn)] text-[var(--btn-text)] font-medium text-sm hover:opacity-90 transition-all hover:scale-[1.02] active:scale-95">
+                    <Github size={16} /> GitHub Profile
+                  </a>
+                  <a href="https://linkedin.com/in/sriharsha-meduri" target="_blank" rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-2xl bg-[var(--card-solid)] border border-[var(--divider-light)] font-medium text-sm hover:bg-[var(--card-hover)] transition-all hover:scale-[1.02] active:scale-95">
+                    <ExternalLink size={16} /> LinkedIn
+                  </a>
+                  <a href="mailto:sriharshameduri07@gmail.com"
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-2xl bg-[var(--card-solid)] border border-[var(--divider-light)] font-medium text-sm hover:bg-[var(--card-hover)] transition-all hover:scale-[1.02] active:scale-95 opacity-70">
+                    sriharshameduri07@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
     </div>
   );
 }

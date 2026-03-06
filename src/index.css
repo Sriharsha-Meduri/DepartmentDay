@@ -1,13 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
+:root {
+  --bg: #dcfce7;
+  --text: #0a2e1f;
+  --accent: #00aa22;
+  --highlight: #ccff00;
+  --card: rgba(255, 255, 255, 0.4);
+  --card-solid: #ffffff;
+  --card-border: rgba(255, 255, 255, 0.5);
+  --card-hover: rgba(255, 255, 255, 0.7);
+  --card-subtle: rgba(255, 255, 255, 0.5);
+  --btn: #0a2e1f;
+  --btn-text: #dcfce7;
+  --nav-scrolled: rgba(220, 252, 231, 0.8);
+  --mobile-menu-bg: rgba(220, 252, 231, 0.9);
+  --footer-bg: #0a2e1f;
+  --footer-text: #dcfce7;
+  --divider: rgba(10, 46, 31, 0.1);
+  --divider-light: rgba(10, 46, 31, 0.05);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  --input-bg: rgba(255, 255, 255, 0.4);
+  --badge-bg: rgba(255, 255, 255, 0.9);
+  --leaderboard-row: rgba(220, 252, 231, 0.3);
+  --leaderboard-row-hover: rgba(220, 252, 231, 0.6);
+  --icon-bg: #dcfce7;
+}
+
+.dark {
+  --bg: #0a1612;
+  --text: #e0f5e8;
+  --accent: #4ade80;
+  --highlight: #ccff00;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-solid: #13291f;
+  --card-border: rgba(255, 255, 255, 0.06);
+  --card-hover: rgba(255, 255, 255, 0.08);
+  --card-subtle: rgba(255, 255, 255, 0.06);
+  --btn: #e0f5e8;
+  --btn-text: #0a1612;
+  --nav-scrolled: rgba(10, 22, 18, 0.85);
+  --mobile-menu-bg: rgba(10, 22, 18, 0.95);
+  --footer-bg: #060e0a;
+  --footer-text: #e0f5e8;
+  --divider: rgba(255, 255, 255, 0.08);
+  --divider-light: rgba(255, 255, 255, 0.04);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-card-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  --input-bg: rgba(255, 255, 255, 0.06);
+  --badge-bg: rgba(255, 255, 255, 0.1);
+  --leaderboard-row: rgba(255, 255, 255, 0.04);
+  --leaderboard-row-hover: rgba(255, 255, 255, 0.08);
+  --icon-bg: #1a3d2c;
+}
+
 body {
   font-family: "Inter", sans-serif;
-  background-color: #d8f8e1;
+  background-color: var(--bg);
+  color: var(--text);
   margin: 0;
   padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+::selection {
+  background-color: var(--highlight);
+  color: var(--text);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50% { transform: translateY(-18px) rotate(2deg); }
+}
+.animate-float { animation: float 3.5s ease-in-out infinite; }
+.animate-float-slow { animation: float-slow 5s ease-in-out infinite; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.4); }
+}
+.animate-pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }

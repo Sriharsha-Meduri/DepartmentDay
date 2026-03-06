@@ -1,12 +1,15 @@
-import { Link, useLocation } from 'react-router-dom';
-import { RefreshCw, X, Menu } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { X, Menu, Sun, Moon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useApp } from '../context/AppContext';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { darkMode, toggleDarkMode } = useApp();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,11 +19,30 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const links = [
+  const pageLinks = [
     { name: 'Home', path: '/' },
     { name: 'Events', path: '/events' },
-    { name: 'My Registrations', path: '/my-registrations' },
   ];
+
+  const sectionLinks = [
+    { name: 'How it Works', id: 'how-it-works' },
+    { name: 'Schedule', id: 'schedule' },
+    { name: 'FAQ', id: 'faq' },
+  ];
+
+  const scrollToSection = (id: string) => {
+    setIsOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 500);
+    } else {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
     <>
@@ -29,50 +51,79 @@ export function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 w-full z-50 transition-all duration-500 px-8 ${
-          scrolled ? 'py-4 bg-[#dcfce7]/80 backdrop-blur-xl shadow-sm border-b border-[#0a2e1f]/5' : 'py-6 bg-transparent'
+          scrolled 
+            ? 'py-4 bg-[var(--nav-scrolled)] backdrop-blur-xl shadow-sm border-b border-[var(--divider-light)]' 
+            : 'py-6 bg-transparent'
         } flex justify-between items-center`}
       >
-        <Link to="/" className="flex items-center gap-2 text-xl font-medium tracking-tight hover:opacity-80 transition-opacity">
+        <Link to="/" className="flex items-center gap-2 text-xl font-medium tracking-tight hover:opacity-80 transition-opacity text-[var(--text)]">
           <div className="flex gap-[3px]">
-            <div className="w-[3px] h-5 bg-[#0a2e1f] rounded-full"></div>
-            <div className="w-[3px] h-5 bg-[#0a2e1f] rounded-full opacity-70"></div>
-            <div className="w-[3px] h-5 bg-[#0a2e1f] rounded-full opacity-40"></div>
+            <div className="w-[3px] h-5 bg-[var(--text)] rounded-full"></div>
+            <div className="w-[3px] h-5 bg-[var(--text)] rounded-full opacity-70"></div>
+            <div className="w-[3px] h-5 bg-[var(--text)] rounded-full opacity-40"></div>
           </div>
           DeptDay '26
         </Link>
         
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8 font-medium">
-          {links.map(link => (
+          {pageLinks.map(link => (
             <Link 
               key={link.path} 
               to={link.path}
-              className={`relative hover:text-[#00aa22] transition-colors ${location.pathname === link.path ? 'text-[#00aa22]' : ''}`}
+              className={`relative hover:text-[var(--accent)] transition-colors ${location.pathname === link.path ? 'text-[var(--accent)]' : 'text-[var(--text)]'}`}
             >
               {link.name}
               {location.pathname === link.path && (
                 <motion.div 
                   layoutId="nav-indicator"
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#00aa22] rounded-full"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[var(--accent)] rounded-full"
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
             </Link>
           ))}
+          <div className="w-px h-5 bg-[var(--divider)]"></div>
+          {sectionLinks.map(link => (
+            <button 
+              key={link.id}
+              onClick={() => scrollToSection(link.id)}
+              className="relative hover:text-[var(--accent)] transition-colors text-[var(--text)] opacity-70 hover:opacity-100"
+            >
+              {link.name}
+            </button>
+          ))}
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="md:hidden w-10 h-10 rounded-full bg-[#0a2e1f] text-[#dcfce7] flex items-center justify-center hover:bg-[#0a2e1f]/80 transition-colors" onClick={() => setIsOpen(true)}>
-            <Menu size={16} />
+          {/* Dark Mode Toggle */}
+          <motion.button 
+            whileHover={{ scale: 1.05 }} 
+            whileTap={{ scale: 0.95 }} 
+            onClick={toggleDarkMode}
+            className="w-10 h-10 rounded-full bg-[var(--btn)] text-[var(--btn-text)] flex items-center justify-center hover:opacity-80 transition-all"
+            aria-label="Toggle dark mode"
+          >
+            <AnimatePresence mode="wait">
+              {darkMode ? (
+                <motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                  <Sun size={16} />
+                </motion.div>
+              ) : (
+                <motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                  <Moon size={16} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
+
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="md:hidden w-10 h-10 rounded-full bg-[var(--btn)] text-[var(--btn-text)] flex items-center justify-center"
+            onClick={() => setIsOpen(true)}
+          >
+            <Menu size={18} />
           </button>
-          <div className="hidden md:flex gap-3">
-            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-10 h-10 rounded-full bg-[#0a2e1f] text-[#dcfce7] flex items-center justify-center hover:bg-[#0a2e1f]/80 transition-colors">
-              <RefreshCw size={16} />
-            </motion.button>
-            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-10 h-10 rounded-full bg-[#0a2e1f] text-[#dcfce7] flex items-center justify-center hover:bg-[#0a2e1f]/80 transition-colors">
-              <X size={16} />
-            </motion.button>
-          </div>
         </div>
       </motion.nav>
 
@@ -84,20 +135,20 @@ export function Navbar() {
             animate={{ opacity: 1, backdropFilter: 'blur(16px)' }}
             exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-[60] bg-[#dcfce7]/90 flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[60] bg-[var(--mobile-menu-bg)] flex flex-col items-center justify-center"
           >
             <motion.button 
               initial={{ scale: 0, rotate: -90 }}
               animate={{ scale: 1, rotate: 0 }}
               exit={{ scale: 0, rotate: 90 }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="absolute top-6 right-8 w-12 h-12 rounded-full bg-[#0a2e1f] text-[#dcfce7] flex items-center justify-center shadow-lg"
+              className="absolute top-6 right-8 w-12 h-12 rounded-full bg-[var(--btn)] text-[var(--btn-text)] flex items-center justify-center shadow-lg"
               onClick={() => setIsOpen(false)}
             >
               <X size={20} />
             </motion.button>
             <div className="flex flex-col gap-8 text-4xl font-medium text-center">
-              {links.map((link, i) => (
+              {pageLinks.map((link, i) => (
                 <motion.div
                   key={link.path}
                   initial={{ opacity: 0, y: 40 }}
@@ -108,10 +159,27 @@ export function Navbar() {
                   <Link 
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={`hover:text-[#00aa22] transition-colors ${location.pathname === link.path ? 'text-[#00aa22]' : ''}`}
+                    className={`hover:text-[var(--accent)] transition-colors ${location.pathname === link.path ? 'text-[var(--accent)]' : 'text-[var(--text)]'}`}
                   >
                     {link.name}
                   </Link>
+                </motion.div>
+              ))}
+              <div className="w-16 h-px bg-[var(--divider)] mx-auto"></div>
+              {sectionLinks.map((link, i) => (
+                <motion.div
+                  key={link.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.4, delay: (pageLinks.length + i) * 0.1 }}
+                >
+                  <button 
+                    onClick={() => scrollToSection(link.id)}
+                    className="hover:text-[var(--accent)] transition-colors text-[var(--text)] text-2xl opacity-70 hover:opacity-100"
+                  >
+                    {link.name}
+                  </button>
                 </motion.div>
               ))}
             </div>

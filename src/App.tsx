@@ -5,7 +5,6 @@ import { Home } from './pages/Home';
 import { Events } from './pages/Events';
 import { EventDetail } from './pages/EventDetail';
 import { Register } from './pages/Register';
-import { MyRegistrations } from './pages/MyRegistrations';
 
 export default function App() {
   return (
@@ -17,7 +16,6 @@ export default function App() {
             <Route path="events" element={<Events />} />
             <Route path="event/:id" element={<EventDetail />} />
             <Route path="register/:eventId" element={<Register />} />
-            <Route path="my-registrations" element={<MyRegistrations />} />
           </Route>
         </Routes>
       </Router>

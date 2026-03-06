@@ -2,12 +2,14 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useApp } from '../context/AppContext';
 
 export function Layout() {
   const location = useLocation();
+  const { darkMode } = useApp();
   
   return (
-    <div className="min-h-screen bg-[#dcfce7] text-[#0a2e1f] font-sans overflow-x-hidden selection:bg-[#00ff44] selection:text-[#0a2e1f] flex flex-col">
+    <div className={`min-h-screen bg-[var(--bg)] text-[var(--text)] font-sans overflow-x-hidden flex flex-col transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
       <Navbar />
       <AnimatePresence mode="wait">
         <motion.main 

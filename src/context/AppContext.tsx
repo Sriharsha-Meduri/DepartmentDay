@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Registration, INITIAL_REGISTRATIONS, Section } from '../data/mock';
+import { Registration, INITIAL_REGISTRATIONS } from '../data/mock';
 
 interface AppState {
-  section: Section;
-  setSection: (section: Section) => void;
+  darkMode: boolean;
+  toggleDarkMode: () => void;
   registrations: Registration[];
   addRegistration: (reg: Registration) => void;
 }
@@ -11,22 +11,34 @@ interface AppState {
 const AppContext = createContext<AppState | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [section, setSection] = useState<Section>('BOYS');
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    const saved = localStorage.getItem('dept_day_dark_mode');
+    return saved ? JSON.parse(saved) : false;
+  });
+
   const [registrations, setRegistrations] = useState<Registration[]>(() => {
     const saved = localStorage.getItem('dept_day_registrations');
     return saved ? JSON.parse(saved) : INITIAL_REGISTRATIONS;
   });
 
   useEffect(() => {
+    localStorage.setItem('dept_day_dark_mode', JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  useEffect(() => {
     localStorage.setItem('dept_day_registrations', JSON.stringify(registrations));
   }, [registrations]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(prev => !prev);
+  };
 
   const addRegistration = (reg: Registration) => {
     setRegistrations(prev => [...prev, reg]);
   };
 
   return (
-    <AppContext.Provider value={{ section, setSection, registrations, addRegistration }}>
+    <AppContext.Provider value={{ darkMode, toggleDarkMode, registrations, addRegistration }}>
       {children}
     </AppContext.Provider>
   );

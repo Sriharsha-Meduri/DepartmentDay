@@ -5,29 +5,33 @@ import { Link } from 'react-router-dom';
 const STEPS = [
   {
     number: '01',
-    title: 'Browse Events',
-    description: 'Explore our curated collection of events across four exciting categories. Filter by your interests, check out the details, and find the perfect competition for you.'
+    title: 'Pick Your Event',
+    description: 'Quiz Blitz, Coding Contest, Vibeathon, or Cyber Hunt — browse all four, check the rules, see the dates, and decide where you want to leave your mark.',
+    emoji: '🎯'
   },
   {
     number: '02',
-    title: 'Pick Your Section',
-    description: 'Choose between the Boys Section and Girls Section to see events tailored for you. Each section features its own dedicated pool of competitions and activities.'
+    title: 'Team Up or Solo',
+    description: 'Some events are solo, some need a squad. Get your classmates together, decide your strategy, and build the team that is going to dominate.',
+    emoji: '🤝'
   },
   {
     number: '03',
-    title: 'Register Online',
-    description: 'Fill out a quick two-step registration form with your details. Upload a profile picture, select your department and year, and lock in your spot instantly.'
+    title: 'Register Free',
+    description: 'Quick two-step form — name, reg number, department, done. No fees, no hassle. Just lock in your spot before it fills up.',
+    emoji: '⚡'
   },
   {
     number: '04',
-    title: 'Show Up and Compete',
-    description: 'Arrive at the venue on event day, check in with your registration ID, and give it your best shot. Climb the leaderboard and take home the glory.'
+    title: 'Show Up & Win',
+    description: 'Come to the IT Department on event day with your college ID, bring your A-game, and make your batch proud. Glory awaits.',
+    emoji: '🏆'
   }
 ];
 
 export function HowItWorks() {
   return (
-    <section className="py-32 px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20">
+    <section id="how-it-works" className="py-32 px-8 lg:px-16 max-w-[1600px] mx-auto relative z-20 scroll-mt-24">
       <div className="mb-16">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -44,7 +48,7 @@ export function HowItWorks() {
           transition={{ delay: 0.1 }}
           className="text-lg opacity-70 max-w-2xl font-light"
         >
-          Getting involved is simple. Four easy steps stand between you and the most exciting two days of the academic year.
+          Getting involved is simple. Four easy steps between you and the most legendary day of your college year.
         </motion.p>
       </div>
 
@@ -56,13 +60,17 @@ export function HowItWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: i * 0.15 }}
-            className="relative"
+            whileHover={{ y: -8, scale: 1.02 }}
+            className="relative bg-[var(--card)] backdrop-blur-md rounded-3xl p-8 border border-[var(--card-border)] hover:bg-[var(--card-hover)] transition-colors shadow-sm hover:shadow-xl"
           >
-            <div className="text-7xl font-bold text-[#0a2e1f]/5 mb-4 leading-none">{step.number}</div>
+            <div className="flex items-center justify-between mb-6">
+              <span className="text-4xl">{step.emoji}</span>
+              <div className="text-4xl font-bold opacity-10 leading-none">{step.number}</div>
+            </div>
             <h3 className="text-xl font-medium mb-3">{step.title}</h3>
             <p className="opacity-60 font-light leading-relaxed text-sm">{step.description}</p>
             {i < STEPS.length - 1 && (
-              <div className="hidden lg:block absolute top-8 right-0 translate-x-1/2 w-8 h-[2px] bg-[#0a2e1f]/10"></div>
+              <div className="hidden lg:block absolute top-1/2 -right-4 translate-x-1/2 -translate-y-1/2 w-8 h-[2px] bg-[var(--divider)] z-10"></div>
             )}
           </motion.div>
         ))}
@@ -79,10 +87,10 @@ export function HowItWorks() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-[#0a2e1f] text-[#dcfce7] pl-8 pr-3 py-3 rounded-full font-medium hover:bg-[#0a2e1f]/90 transition-colors group inline-flex items-center gap-4"
+            className="bg-[var(--btn)] text-[var(--btn-text)] pl-8 pr-3 py-3 rounded-full font-medium hover:opacity-90 transition-all group inline-flex items-center gap-4"
           >
-            Start Browsing Events
-            <div className="w-10 h-10 rounded-full bg-[#ccff00] text-[#0a2e1f] flex items-center justify-center group-hover:scale-110 transition-transform">
+            Start Registering Now
+            <div className="w-10 h-10 rounded-full bg-[var(--highlight)] text-[#0a2e1f] flex items-center justify-center group-hover:scale-110 transition-transform">
               <ArrowRight size={20} />
             </div>
           </motion.button>

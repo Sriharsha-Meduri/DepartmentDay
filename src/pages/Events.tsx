@@ -1,68 +1,46 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Filter, ArrowUpRight, Grid, List as ListIcon } from 'lucide-react';
+import { Search, ArrowUpRight, Grid, List as ListIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useApp } from '../context/AppContext';
-import { MOCK_EVENTS, Category, Section } from '../data/mock';
+import { MOCK_EVENTS } from '../data/mock';
 
 export function Events() {
-  const { section, setSection } = useApp();
   const [search, setSearch] = useState('');
-  const [category, setCategory] = useState<Category | 'ALL'>('ALL');
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState<'date' | 'name'>('name');
 
   const filteredEvents = useMemo(() => {
     return MOCK_EVENTS.filter(event => {
-      const matchSection = event.section === section;
-      const matchCategory = category === 'ALL' || event.category === category;
       const matchSearch = event.title.toLowerCase().includes(search.toLowerCase()) || 
                           event.description.toLowerCase().includes(search.toLowerCase());
-      return matchSection && matchCategory && matchSearch;
+      return matchSearch;
     }).sort((a, b) => {
       if (sortBy === 'name') return a.title.localeCompare(b.title);
       return new Date(a.date).getTime() - new Date(b.date).getTime();
     });
-  }, [section, category, search, sortBy]);
+  }, [search, sortBy]);
 
   return (
     <div className="pt-32 pb-24 px-8 lg:px-16 max-w-[1600px] mx-auto min-h-screen">
       
-      {/* Header & Section Toggle */}
+      {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16">
         <div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl lg:text-7xl font-medium tracking-tight mb-6"
+            className="text-5xl lg:text-7xl font-medium tracking-tight mb-4"
           >
             Events
           </motion.h1>
-          <motion.div 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="flex bg-white/40 backdrop-blur-md p-1 rounded-full border border-white/50 w-fit relative"
+            className="text-lg opacity-60 font-light max-w-lg"
           >
-            <button 
-              onClick={() => setSection('BOYS')}
-              className={`relative px-8 py-3 rounded-full font-medium transition-all z-10 ${section === 'BOYS' ? 'text-[#dcfce7]' : 'text-[#0a2e1f] hover:bg-white/50'}`}
-            >
-              Boys Section
-            </button>
-            <button 
-              onClick={() => setSection('GIRLS')}
-              className={`relative px-8 py-3 rounded-full font-medium transition-all z-10 ${section === 'GIRLS' ? 'text-[#dcfce7]' : 'text-[#0a2e1f] hover:bg-white/50'}`}
-            >
-              Girls Section
-            </button>
-            <motion.div 
-              className="absolute top-1 bottom-1 w-[calc(50%-4px)] bg-[#0a2e1f] rounded-full shadow-md z-0"
-              initial={false}
-              animate={{ x: section === 'BOYS' ? 4 : '100%' }}
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            />
-          </motion.div>
+            Technical events are live now — more events across sports, culture & more are being announced soon. Register for what's open and check back for updates.
+          </motion.p>
         </div>
 
         {/* Search & View Toggle */}
@@ -73,30 +51,30 @@ export function Events() {
           className="flex flex-col sm:flex-row gap-4 w-full md:w-auto"
         >
           <div className="relative flex-1 sm:w-64 group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 opacity-50 group-focus-within:opacity-100 group-focus-within:text-[#00aa22] transition-colors" size={18} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 opacity-50 group-focus-within:opacity-100 group-focus-within:text-[var(--accent)] transition-colors" size={18} />
             <input 
               type="text" 
               placeholder="Search events..." 
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-white/40 backdrop-blur-md border border-white/50 rounded-full py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#00aa22]/50 transition-all font-light shadow-sm"
+              className="w-full bg-[var(--input-bg)] backdrop-blur-md border border-[var(--card-border)] rounded-full py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/30 transition-all font-light shadow-sm text-[var(--text)]"
             />
           </div>
-          <div className="flex gap-2 bg-white/40 backdrop-blur-md p-1 rounded-full border border-white/50 relative">
+          <div className="flex gap-2 bg-[var(--card)] backdrop-blur-md p-1 rounded-full border border-[var(--card-border)] relative">
             <button 
               onClick={() => setView('grid')}
-              className={`relative p-2 rounded-full transition-colors z-10 ${view === 'grid' ? 'text-[#dcfce7]' : 'hover:bg-white/50'}`}
+              className={`relative p-2 rounded-full transition-colors z-10 ${view === 'grid' ? 'text-[var(--btn-text)]' : 'hover:bg-[var(--card-hover)]'}`}
             >
               <Grid size={20} />
             </button>
             <button 
               onClick={() => setView('list')}
-              className={`relative p-2 rounded-full transition-colors z-10 ${view === 'list' ? 'text-[#dcfce7]' : 'hover:bg-white/50'}`}
+              className={`relative p-2 rounded-full transition-colors z-10 ${view === 'list' ? 'text-[var(--btn-text)]' : 'hover:bg-[var(--card-hover)]'}`}
             >
               <ListIcon size={20} />
             </button>
             <motion.div 
-              className="absolute top-1 bottom-1 w-[36px] bg-[#0a2e1f] rounded-full shadow-md z-0"
+              className="absolute top-1 bottom-1 w-[36px] bg-[var(--btn)] rounded-full shadow-md z-0"
               initial={false}
               animate={{ x: view === 'grid' ? 4 : 44 }}
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
@@ -105,41 +83,22 @@ export function Events() {
         </motion.div>
       </div>
 
-      {/* Filters */}
+      {/* Sort */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="flex flex-wrap items-center justify-between gap-6 mb-12 pb-6 border-b border-[#0a2e1f]/10"
+        className="flex items-center justify-end gap-4 text-sm font-medium mb-12 pb-6 border-b border-[var(--divider)]"
       >
-        <div className="flex flex-wrap gap-2">
-          <span className="flex items-center gap-2 text-sm font-medium opacity-60 mr-4">
-            <Filter size={16} /> Category:
-          </span>
-          {['ALL', 'TECHNICAL', 'NON-TECHNICAL', 'INDOOR', 'OUTDOOR'].map((cat) => (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              key={cat}
-              onClick={() => setCategory(cat as any)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${category === cat ? 'bg-[#ccff00] text-[#0a2e1f] shadow-sm' : 'bg-white/40 hover:bg-white/60 border border-white/50'}`}
-            >
-              {cat}
-            </motion.button>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-4 text-sm font-medium">
-          <span className="opacity-60">Sort by:</span>
-          <select 
-            value={sortBy} 
-            onChange={(e) => setSortBy(e.target.value as any)}
-            className="bg-transparent border-none focus:ring-0 cursor-pointer font-medium outline-none"
-          >
-            <option value="name">Name (A-Z)</option>
-            <option value="date">Date (Earliest)</option>
-          </select>
-        </div>
+        <span className="opacity-60">Sort by:</span>
+        <select 
+          value={sortBy} 
+          onChange={(e) => setSortBy(e.target.value as any)}
+          className="bg-transparent border-none focus:ring-0 cursor-pointer font-medium outline-none text-[var(--text)]"
+        >
+          <option value="name">Name (A-Z)</option>
+          <option value="date">Date (Earliest)</option>
+        </select>
       </motion.div>
 
       {/* Events Grid/List */}
@@ -158,7 +117,7 @@ export function Events() {
               No events found matching your criteria.
             </motion.div>
           ) : (
-            filteredEvents.map((event, i) => (
+            filteredEvents.map((event) => (
               <motion.div
                 layout
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -167,7 +126,7 @@ export function Events() {
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 key={event.id}
-                className={`bg-white rounded-3xl overflow-hidden shadow-sm border border-[#0a2e1f]/5 group hover:shadow-2xl transition-shadow duration-500 ${view === 'list' ? 'flex flex-row h-48' : 'flex flex-col'}`}
+                className={`bg-[var(--card-solid)] rounded-3xl overflow-hidden border border-[var(--divider-light)] group hover:shadow-2xl transition-shadow duration-500 ${view === 'list' ? 'flex flex-row h-48' : 'flex flex-col'}`}
               >
                 <div className={`relative overflow-hidden ${view === 'list' ? 'w-1/3 h-full' : 'h-56 w-full'}`}>
                   <motion.img 
@@ -178,7 +137,7 @@ export function Events() {
                     className="w-full h-full object-cover" 
                   />
                   <div className="absolute top-4 left-4 flex gap-2">
-                    <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-[#0a2e1f]">
+                    <span className="bg-[var(--badge-bg)] backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium">
                       {event.category}
                     </span>
                   </div>
@@ -186,18 +145,13 @@ export function Events() {
                 <div className={`p-6 flex flex-col flex-1 ${view === 'list' ? 'justify-center' : ''}`}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-2xl font-medium">{event.title}</h3>
-                    {view === 'list' && (
-                      <span className="bg-[#ccff00]/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-[#0a2e1f]">
-                        {event.section}
-                      </span>
-                    )}
                   </div>
                   <p className={`opacity-70 font-light text-sm mb-6 ${view === 'list' ? 'line-clamp-3' : 'line-clamp-2'} flex-1`}>{event.description}</p>
                   
-                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-[#0a2e1f]/5">
+                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-[var(--divider-light)]">
                     <div className="flex flex-col gap-1">
                       <div className="text-sm font-medium opacity-80">
-                        {new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} • {event.time}
+                        {new Date(event.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} &bull; {event.time}
                       </div>
                       <div className="text-xs font-light opacity-60">
                         {event.registeredCount} Registered
@@ -207,7 +161,7 @@ export function Events() {
                       <motion.div 
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="w-12 h-12 rounded-full bg-[#0a2e1f]/5 flex items-center justify-center group-hover:bg-[#0a2e1f] group-hover:text-[#dcfce7] transition-colors"
+                        className="w-12 h-12 rounded-full bg-[var(--divider-light)] flex items-center justify-center group-hover:bg-[var(--btn)] group-hover:text-[var(--btn-text)] transition-colors"
                       >
                         <ArrowUpRight size={20} />
                       </motion.div>
@@ -218,6 +172,18 @@ export function Events() {
             ))
           )}
         </AnimatePresence>
+
+        {/* Coming Soon Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-8 rounded-3xl border-2 border-dashed border-[var(--divider)] flex flex-col items-center justify-center py-16 px-8 text-center"
+        >
+          <div className="text-3xl mb-3">🎉</div>
+          <h3 className="text-xl font-medium mb-2">More Events Coming Soon</h3>
+          <p className="opacity-50 font-light text-sm max-w-sm">Sports, cultural, and other exciting events are yet to be announced. Stay tuned — this page will update as more events are added.</p>
+        </motion.div>
       </motion.div>
     </div>
   );
