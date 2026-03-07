@@ -158,7 +158,7 @@ export function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1, duration: 0.6 }}
               >
-                <span className="w-2 h-2 rounded-full bg-blue-400"></span> Quiz Blitz · Mar 10 AM
+                <span className="w-2 h-2 rounded-full bg-blue-400"></span> Quiz Blitz · Mar 10
               </motion.div>
               <motion.div
                 className="absolute top-[38%] right-[-4%] z-40 bg-[var(--highlight)] text-[#0a2e1f] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-bold flex items-center gap-2 animate-float-slow hero-chip-right-overflow"
@@ -166,7 +166,7 @@ export function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.2, duration: 0.6 }}
               >
-                ⚡ Coding Contest · Mar 10 PM
+                ⚡ Coding Contest · Mar 10
               </motion.div>
               <motion.div
                 className="absolute bottom-[28%] right-[0%] z-40 bg-[var(--card-solid)] border border-[var(--divider-light)] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-semibold flex items-center gap-2 animate-float hero-chip-right-overflow"
