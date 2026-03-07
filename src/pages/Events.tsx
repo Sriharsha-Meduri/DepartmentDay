@@ -7,7 +7,7 @@ import { MOCK_EVENTS } from '../data/mock';
 export function Events() {
   const [search, setSearch] = useState('');
   const [view, setView] = useState<'grid' | 'list'>('grid');
-  const [sortBy, setSortBy] = useState<'date' | 'name'>('name');
+  const [sortBy, setSortBy] = useState<'date' | 'name'>('date');
 
   const filteredEvents = useMemo(() => {
     return MOCK_EVENTS.filter(event => {
@@ -16,7 +16,11 @@ export function Events() {
       return matchSearch;
     }).sort((a, b) => {
       if (sortBy === 'name') return a.title.localeCompare(b.title);
-      return new Date(a.date).getTime() - new Date(b.date).getTime();
+      const dateDiff = new Date(a.date).getTime() - new Date(b.date).getTime();
+      if (dateDiff !== 0) return dateDiff;
+      // Same date: sort by time (parse 12-hour format)
+      const parseTime = (t: string) => { const [time, period] = t.split(' '); let [h, m] = time.split(':').map(Number); if (period === 'PM' && h !== 12) h += 12; if (period === 'AM' && h === 12) h = 0; return h * 60 + m; };
+      return parseTime(a.time) - parseTime(b.time);
     });
   }, [search, sortBy]);
 
