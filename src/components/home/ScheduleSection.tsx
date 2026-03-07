@@ -3,9 +3,9 @@ import { Clock, Calendar, MapPin } from 'lucide-react';
 
 const SCHEDULE = [
   {
-    date: 'Mar 9',
-    fullDate: 'Monday, March 9',
-    time: '10:00 AM',
+    date: 'Mar 10',
+    fullDate: 'Tuesday, March 10',
+    time: '11:00 AM',
     title: 'Quiz Blitz',
     description: 'Rapid-fire technical quiz covering programming fundamentals, data structures, algorithms, and current tech trends. Three rounds: written, buzzer, and rapid fire.',
     venue: 'IT Department',
@@ -15,7 +15,7 @@ const SCHEDULE = [
   {
     date: 'Mar 10',
     fullDate: 'Tuesday, March 10',
-    time: '01:00 PM',
+    time: '02:00 PM',
     title: 'Coding Contest',
     description: 'Competitive programming showdown with 6 algorithmic problems of increasing difficulty. Duration: 2 hours. Languages allowed: C, C++, Java, Python.',
     venue: 'IT Department',

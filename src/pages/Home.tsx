@@ -158,7 +158,7 @@ export function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1, duration: 0.6 }}
               >
-                <span className="w-2 h-2 rounded-full bg-blue-400"></span> Quiz Blitz · Mar 9
+                <span className="w-2 h-2 rounded-full bg-blue-400"></span> Quiz Blitz · Mar 10 AM
               </motion.div>
               <motion.div
                 className="absolute top-[38%] right-[-4%] z-40 bg-[var(--highlight)] text-[#0a2e1f] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-bold flex items-center gap-2 animate-float-slow hero-chip-right-overflow"
@@ -166,7 +166,7 @@ export function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.2, duration: 0.6 }}
               >
-                ⚡ Coding Contest · Mar 10
+                ⚡ Coding Contest · Mar 10 PM
               </motion.div>
               <motion.div
                 className="absolute bottom-[28%] right-[0%] z-40 bg-[var(--card-solid)] border border-[var(--divider-light)] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-semibold flex items-center gap-2 animate-float hero-chip-right-overflow"
@@ -203,7 +203,7 @@ export function Home() {
         <div className="flex animate-marquee whitespace-nowrap w-max">
           {[0, 1].map((i) => (
             <span key={i} className="flex items-center">
-              {['QUIZ BLITZ', 'MARCH 9', 'CODING CONTEST', 'MARCH 10', 'VIBEATHON', 'MARCH 17', 'CYBER HUNT', 'MARCH 18', 'FREE ENTRY', 'NO EXCUSES', 'GLORY AWAITS', 'SHOW UP & WIN', 'IT DEPARTMENT', 'APRIL 8 2026', 'REGISTER FREE', 'DEPARTMENT DAY'].map((text) => (
+              {['QUIZ BLITZ', 'MARCH 10 AM', 'CODING CONTEST', 'MARCH 10 PM', 'VIBEATHON', 'MARCH 17', 'CYBER HUNT', 'MARCH 18', 'FREE ENTRY', 'NO EXCUSES', 'GLORY AWAITS', 'SHOW UP & WIN', 'IT DEPARTMENT', 'APRIL 8 2026', 'REGISTER FREE', 'DEPARTMENT DAY'].map((text) => (
                 <span key={text} className="flex items-center">
                   <span className="text-xs font-bold tracking-[0.2em] uppercase px-5">{text}</span>
                   <span className="text-[var(--highlight)] text-base">✦</span>

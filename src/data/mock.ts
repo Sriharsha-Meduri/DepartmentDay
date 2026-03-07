@@ -38,7 +38,7 @@ export const MOCK_EVENTS: Event[] = [
       photo: 'https://i.pravatar.cc/150?u=balgani'
     },
     registeredCount: 85,
-    date: '2026-03-09',
+    date: '2026-03-10',
     time: '11:00 AM',
     venue: 'Information Technology Department',
     image: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=800&h=600&fit=crop&auto=format',
