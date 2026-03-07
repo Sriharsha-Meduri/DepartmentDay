@@ -15,10 +15,10 @@ export function Footer() {
                 <div className="w-[3px] h-6 bg-[var(--highlight)] rounded-full opacity-70"></div>
                 <div className="w-[3px] h-6 bg-[var(--highlight)] rounded-full opacity-40"></div>
               </div>
-              DeptDay '26
+              Udbhav '26
             </div>
             <p className="font-light opacity-60 leading-relaxed text-sm mb-6">
-              Department Day 2026, proudly organised by the students of the Information Technology Department. Technical events are live now. Sports, cultural and more coming soon. Built by us, for us.
+              Udbhav '26, proudly organised by the students of the Information Technology Department. Technical events are live now. Sports, cultural and more coming soon. Built by us, for us.
             </p>
             <div className="flex gap-3">
               <a href="https://instagram.com/udbhav_2k26" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-xs font-medium hover:bg-[var(--highlight)] hover:text-[#0a2e1f] transition-colors">
@@ -91,7 +91,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-6 sm:pt-8 border-t border-white/10 flex flex-col items-center gap-2 sm:gap-4 opacity-50 font-light text-xs sm:text-sm text-center">
-          <p>&copy; 2026 Department Day. All rights reserved.</p>
+          <p>&copy; Udbhav '26. All rights reserved.</p>
           <p className="opacity-50">Made with ☕, questionable sleep schedules, and a lot of <span className="text-[var(--highlight)] opacity-100">love</span>. By IT students, for IT students.</p>
         </div>
       </div>
