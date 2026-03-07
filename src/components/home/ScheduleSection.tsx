@@ -5,7 +5,7 @@ const SCHEDULE = [
   {
     date: 'Mar 10',
     fullDate: 'Tuesday, March 10',
-    time: '11:00 AM',
+    time: '10:00 AM',
     title: 'Quiz Blitz',
     description: 'Rapid-fire technical quiz covering programming fundamentals, data structures, algorithms, and current tech trends. Three rounds: written, buzzer, and rapid fire.',
     venue: 'IT Department',
