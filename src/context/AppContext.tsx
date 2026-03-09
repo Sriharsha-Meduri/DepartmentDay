@@ -12,7 +12,7 @@ const AppContext = createContext<AppState | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
-    const saved = localStorage.getItem('dept_day_dark_mode');
+    const saved = localStorage.getItem('dept_day_theme_v2');
     return saved ? JSON.parse(saved) : true;
   });
 
@@ -22,7 +22,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
-    localStorage.setItem('dept_day_dark_mode', JSON.stringify(darkMode));
+    localStorage.setItem('dept_day_theme_v2', JSON.stringify(darkMode));
   }, [darkMode]);
 
   useEffect(() => {
