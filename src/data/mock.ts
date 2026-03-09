@@ -4,7 +4,9 @@ export interface Event {
   id: string;
   title: string;
   category: Category;
+  participationType?: 'SOLO' | 'TEAM';
   description: string;
+  note?: string;
   rules: string[];
   coordinator: {
     name: string;
@@ -24,7 +26,9 @@ export const MOCK_EVENTS: Event[] = [
     id: 'e9',
     title: 'Quiz Blitz',
     category: 'TECHNICAL',
+    participationType: 'SOLO',
     description: 'A rapid-fire technical quiz covering programming fundamentals, data structures, algorithms, operating systems, and current tech trends. Think fast, answer faster.',
+    note: 'This is a Solo Participant event. Each participant must register and compete individually. No team entries are accepted. Make sure you register under your own name and roll number.',
     rules: [
       'Individual participation only.',
       'Three rounds: written, buzzer, and rapid fire.',
@@ -48,7 +52,9 @@ export const MOCK_EVENTS: Event[] = [
     id: 'e10',
     title: 'Coding Contest',
     category: 'TECHNICAL',
+    participationType: 'SOLO',
     description: 'A classic competitive programming showdown. Solve algorithmic problems of increasing difficulty within a fixed time limit. Accuracy and speed both matter.',
+    note: 'This is a Solo Participant event. Every contestant competes on their own — no pairs or groups allowed. Each participant will be assigned an individual workstation. Collaboration of any kind during the contest is grounds for disqualification.',
     rules: [
       'Individual participation only.',
       'Duration: 2 hours, 6 problems.',
@@ -72,7 +78,9 @@ export const MOCK_EVENTS: Event[] = [
     id: 'e11',
     title: 'Vibeathon',
     category: 'TECHNICAL',
-    description: 'Build the most creative and visually stunning web application in just 4 hours. No restrictions on theme. Judging is based on design, creativity, functionality, and the overall vibe of your project.',
+    participationType: 'TEAM',
+    description: 'Build the most creative and visually stunning web application in just 4 hours. The event kicks off with a theme reveal — your team then has exactly 4 hours to design, develop, and deploy. Submit your live project link or demo before time runs out. Judging happens live, with evaluators assessing design quality, creativity, functionality, code structure, and the overall vibe your project gives off. Pre-built UI components and libraries are allowed. No prior approval of ideas is needed — just show up, get the theme, and start building.',
+    note: 'Teams of 2–3 members. At least one member per team must be present at the venue throughout the event. Projects must be submitted via the provided form before the deadline — late submissions will not be accepted. Internet access is permitted for documentation and package installation only; copying complete project templates is not allowed.',
     rules: [
       'Teams of 2-3 members.',
       'Duration: 4 hours.',
@@ -96,7 +104,9 @@ export const MOCK_EVENTS: Event[] = [
     id: 'e12',
     title: 'Cyber Hunt',
     category: 'TECHNICAL',
-    description: 'A thrilling Capture The Flag style cybersecurity challenge. Solve puzzles involving cryptography, steganography, web exploitation, and forensics to find hidden flags.',
+    participationType: 'TEAM',
+    description: 'A thrilling Capture The Flag (CTF) style cybersecurity challenge. Solve puzzles involving cryptography, steganography, web exploitation, reverse engineering, and digital forensics to find hidden flags and climb the live leaderboard.',
+    note: 'Teams of exactly 2 members. Each team is given access to a shared CTF platform at the start. Challenges span five domains: cryptography, steganography, web exploitation, reverse engineering, and digital forensics. Each challenge hides a flag in the format FLAG{...} — submit it on the platform to earn points. Challenges carry different point values based on difficulty. Hints are available but cost points when unlocked. The leaderboard updates in real time. Rules: (1) Do NOT attack the platform infrastructure or other teams\' systems. (2) Do NOT share flags or solutions with other teams mid-event. (3) Any attempt to manipulate the scoreboard results in immediate disqualification. The team with the highest score at the end of 3 hours wins; time of last correct submission is the tiebreaker.',
     rules: [
       'Teams of 2 members.',
       'Duration: 3 hours.',

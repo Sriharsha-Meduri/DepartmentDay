@@ -81,8 +81,8 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <Phone size={16} className="mt-0.5 opacity-50 flex-shrink-0" />
                 <div>
-                  <div className="text-sm font-light opacity-70">Sriharsha Meduri</div>
-                  <a href="tel:+916302761059" className="text-xs font-light opacity-60 mt-0.5 hover:opacity-100 hover:text-[var(--highlight)] transition-colors">+91 6302761059</a>
+                  <div className="text-sm font-light opacity-70">Prasanthi Gudipati</div>
+                  <a href="tel:+918247806856" className="text-xs font-light opacity-60 mt-0.5 hover:opacity-100 hover:text-[var(--highlight)] transition-colors">+91 8247806856</a>
                 </div>
               </li>
             </ul>

@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowLeft, Calendar, Clock, MapPin, Users, Phone, ArrowRight, Gift, Sparkles, Target, Star } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, MapPin, Users, Phone, ArrowRight, Gift, Sparkles, Target, Star, UserCheck, Info } from 'lucide-react';
 import { MOCK_EVENTS } from '../data/mock';
 import { useRef } from 'react';
 
@@ -51,6 +51,21 @@ export function EventDetail() {
             <motion.span initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} className="bg-[var(--badge-bg)] backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-medium shadow-sm">
               {event.category}
             </motion.span>
+            {event.participationType && (
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3 }}
+                className={`flex items-center gap-1.5 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-medium shadow-sm ${
+                  event.participationType === 'SOLO'
+                    ? 'bg-orange-100 text-orange-800 border border-orange-300'
+                    : 'bg-blue-100 text-blue-800 border border-blue-300'
+                }`}
+              >
+                <UserCheck size={14} />
+                {event.participationType === 'SOLO' ? 'Solo Participant' : 'Team Event'}
+              </motion.span>
+            )}
           </div>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.6 }} className="text-3xl sm:text-5xl lg:text-7xl font-medium tracking-tight">
             {event.title}
@@ -68,6 +83,21 @@ export function EventDetail() {
               <motion.h2 variants={itemVariants} className="text-3xl font-medium mb-6">About the Event</motion.h2>
               <motion.p variants={itemVariants} className="text-xl lg:text-2xl opacity-80 font-light leading-relaxed">{event.description}</motion.p>
             </motion.section>
+
+            {/* Note / Important Info */}
+            {event.note && (
+              <motion.section
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.25 }}
+                className="bg-amber-50 border border-amber-200 rounded-3xl p-7"
+              >
+                <h2 className="text-lg font-semibold text-amber-800 flex items-center gap-2 mb-3">
+                  <Info size={20} /> Important Note
+                </h2>
+                <p className="text-amber-900 font-light leading-relaxed text-sm sm:text-base">{event.note}</p>
+              </motion.section>
+            )}
 
             {/* What to Expect */}
             <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="bg-[var(--card)] backdrop-blur-md rounded-3xl p-8 border border-[var(--card-border)] shadow-sm hover:shadow-md transition-shadow">

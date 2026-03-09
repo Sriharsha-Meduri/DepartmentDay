@@ -13,7 +13,7 @@ const AppContext = createContext<AppState | undefined>(undefined);
 export function AppProvider({ children }: { children: ReactNode }) {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
     const saved = localStorage.getItem('dept_day_dark_mode');
-    return saved ? JSON.parse(saved) : false;
+    return saved ? JSON.parse(saved) : true;
   });
 
   const [registrations, setRegistrations] = useState<Registration[]>(() => {
