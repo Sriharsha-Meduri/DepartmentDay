@@ -18,7 +18,7 @@ export interface Event {
   time: string;
   venue: string;
   image: string;
-  formUrl: string;
+  formUrl?: string;
 }
 
 export const MOCK_EVENTS: Event[] = [
@@ -97,8 +97,7 @@ export const MOCK_EVENTS: Event[] = [
     date: '2026-03-17',
     time: '10:00 AM',
     venue: 'Information Technology Department',
-    image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop&auto=format',
-    formUrl: 'https://forms.gle/8ZxgPbKSRdQoPbJE9'
+    image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop&auto=format'
   },
   {
     id: 'e12',

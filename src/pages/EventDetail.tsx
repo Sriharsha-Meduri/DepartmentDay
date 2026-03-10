@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowLeft, Calendar, Clock, MapPin, Users, Phone, ArrowRight, Gift, Sparkles, Target, Star, UserCheck, Info } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, MapPin, Users, Phone, ArrowRight, Gift, Sparkles, Target, Star, UserCheck, Info, Bell } from 'lucide-react';
 import { MOCK_EVENTS } from '../data/mock';
 import { useRef } from 'react';
 
@@ -183,12 +183,41 @@ export function EventDetail() {
                   </div>
                 ))}
               </div>
-              <a href={event.formUrl} target="_blank" rel="noopener noreferrer" className="mt-8 w-full block">
-                <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full bg-[var(--btn)] text-[var(--btn-text)] py-4 rounded-full font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg hover:shadow-xl group">
-                  Register Now <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </motion.button>
-              </a>
-              <p className="text-xs text-center opacity-40 mt-4 font-light">Free. 30 seconds. No card required. Just do it.</p>
+              {event.formUrl ? (
+                <>
+                  <a href={event.formUrl} target="_blank" rel="noopener noreferrer" className="mt-8 w-full block">
+                    <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full bg-[var(--btn)] text-[var(--btn-text)] py-4 rounded-full font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg hover:shadow-xl group">
+                      Register Now <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </motion.button>
+                  </a>
+                  <p className="text-xs text-center opacity-40 mt-4 font-light">Free. 30 seconds. No card required. Just do it.</p>
+                </>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="mt-8 rounded-2xl overflow-hidden border border-dashed border-[var(--accent)] bg-[var(--icon-bg)]"
+                >
+                  <div className="px-6 py-7 flex flex-col items-center text-center gap-3">
+                    <motion.div
+                      animate={{ scale: [1, 1.12, 1] }}
+                      transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
+                      className="w-12 h-12 rounded-full bg-[var(--accent)]/15 flex items-center justify-center text-[var(--accent)]"
+                    >
+                      <Bell size={22} />
+                    </motion.div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-widest text-[var(--accent)] mb-1">Coming Soon</p>
+                      <h4 className="text-lg font-semibold leading-snug">Registrations Opening Soon</h4>
+                      <p className="text-sm font-light opacity-60 mt-2 leading-relaxed">The form for this event isn't live yet. Check back here shortly — we'll update this page the moment registrations open.</p>
+                    </div>
+                  </div>
+                  <div className="bg-[var(--accent)]/10 border-t border-dashed border-[var(--accent)] px-6 py-3 text-center">
+                    <p className="text-xs font-medium opacity-70">Contact the coordinator below for any queries.</p>
+                  </div>
+                </motion.div>
+              )}
             </motion.div>
 
             {/* Coordinator Card */}
