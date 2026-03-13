@@ -38,7 +38,7 @@ const TESTIMONIALS = [
   {
     name: 'Divya Krishnan',
     role: '2nd Year, IT',
-    quote: 'The Vibeathon was unreal. We had four hours to build a web app from scratch and somehow pulled it off. The judges actually understood good design. Definitely doing it again.',
+    quote: 'The Vibeathon was unreal. We had a full 24-hour sprint to build a web app from scratch and somehow pulled it off. The judges actually understood good design. Definitely doing it again.',
     rating: 5,
     avatar: 'https://i.pravatar.cc/150?u=divya',
     accent: 'from-rose-400 to-red-400',

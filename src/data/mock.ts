@@ -79,11 +79,12 @@ export const MOCK_EVENTS: Event[] = [
     title: 'Vibeathon',
     category: 'TECHNICAL',
     participationType: 'TEAM',
-    description: 'Build the most creative and visually stunning web application in just 4 hours. The event kicks off with a theme reveal — your team then has exactly 4 hours to design, develop, and deploy. Submit your live project link or demo before time runs out. Judging happens live, with evaluators assessing design quality, creativity, functionality, code structure, and the overall vibe your project gives off. Pre-built UI components and libraries are allowed. No prior approval of ideas is needed — just show up, get the theme, and start building.',
-    note: 'Teams of 2–3 members. At least one member per team must be present at the venue throughout the event. Projects must be submitted via the provided form before the deadline — late submissions will not be accepted. Internet access is permitted for documentation and package installation only; copying complete project templates is not allowed.',
+    description: 'Build the most creative and visually stunning web application in a 24-hour sprint. The problem statement (PS) will be released on Sunday at 9:00 AM, and submissions close on Monday at 9:00 AM. Your team can design, develop, and deploy during this window, then submit your live project link or demo before the deadline. Judging happens live, with evaluators assessing design quality, creativity, functionality, code structure, and the overall vibe your project gives off. Pre-built UI components and libraries are allowed. No prior approval of ideas is needed — just show up, get the PS, and start building.',
+    note: 'Team event with a maximum of 4 members per team. At least one member per team must stay available throughout the event window. Projects must be submitted via the provided form before Monday 9:00 AM — late submissions will not be accepted.',
     rules: [
-      'Teams of 2-3 members.',
-      'Duration: 4 hours.',
+      'Team size: up to 4 members.',
+      'Problem statement release: Sunday, 9:00 AM.',
+      'Submission deadline: Monday, 9:00 AM.',
       'Any frontend or full-stack framework is allowed.',
       'Pre-built components and UI libraries are permitted.',
       'Projects must be deployed or demo-ready by the deadline.'
@@ -94,8 +95,8 @@ export const MOCK_EVENTS: Event[] = [
       photo: 'https://i.pravatar.cc/150?u=balgani'
     },
     registeredCount: 72,
-    date: '2026-03-17',
-    time: '10:00 AM',
+    date: '2026-03-15',
+    time: '09:00 AM',
     venue: 'Information Technology Department',
     image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop&auto=format'
   },
