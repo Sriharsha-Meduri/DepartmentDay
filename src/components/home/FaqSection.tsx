@@ -21,7 +21,7 @@ const FAQS = [
   },
   {
     question: 'If I win, do I get an actual prize or just a certificate that\'ll gather dust?',
-    answer: 'Both, and that\'s the whole point. Cash prizes, trophies, and certificates. The certificate might gather dust. The win never will. Show up to find out.'
+    answer: 'Both, and that\'s the whole point. Prizes, trophies, and certificates. The certificate might gather dust. The win never will. Show up to find out.'
   },
   {
     question: 'What do I actually need to bring on event day?',

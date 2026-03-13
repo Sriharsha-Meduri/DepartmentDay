@@ -5,7 +5,7 @@ import { MOCK_EVENTS } from '../data/mock';
 import { useRef } from 'react';
 
 const PRIZES = [
-  { place: '🥇 1st Place', reward: 'Trophy + Certificate + Cash Prize', color: 'bg-yellow-100 text-yellow-800 border-yellow-300' },
+  { place: '🥇 1st Place', reward: 'Trophy + Certificate + Prize', color: 'bg-yellow-100 text-yellow-800 border-yellow-300' },
   { place: '🥈 2nd Place', reward: 'Silver Medal + Certificate', color: 'bg-gray-100 text-gray-700 border-gray-300' },
   { place: '🥉 3rd Place', reward: 'Bronze Medal + Certificate', color: 'bg-amber-100 text-amber-800 border-amber-300' },
 ];
@@ -130,7 +130,7 @@ export function EventDetail() {
                   <div className="w-10 h-10 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center flex-shrink-0"><Gift size={18} /></div>
                   <div>
                     <h4 className="font-medium mb-1">Actual prizes. Not stickers.</h4>
-                    <p className="opacity-60 font-light text-sm leading-relaxed">Trophies, certificates, and cash. The kind of thing you screenshot, WhatsApp your family, and quietly add to your resume.</p>
+                    <p className="opacity-60 font-light text-sm leading-relaxed">Trophies, certificates, and prizes. The kind of thing you screenshot, WhatsApp your family, and quietly add to your resume.</p>
                   </div>
                 </div>
               </div>
