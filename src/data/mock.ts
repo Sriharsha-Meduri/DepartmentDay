@@ -81,11 +81,11 @@ export const MOCK_EVENTS: Event[] = [
     category: 'TECHNICAL',
     participationType: 'TEAM',
     description: 'Build the most creative and visually stunning web application in a 24-hour sprint. Your team can design, develop, and deploy during the event window, then submit your live project link or demo before the deadline. Judging happens live, with evaluators assessing design quality, creativity, functionality, code structure, and the overall vibe your project gives off. Pre-built UI components and libraries are allowed. No prior approval of ideas is needed — just show up and start building.',
-    note: 'Team event with a maximum of 4 members per team. At least one member per team must stay available throughout the event window. Projects must be submitted via the provided form before Monday 9:00 AM — late submissions will not be accepted.',
+    note: 'Team event with a maximum of 4 members per team. At least one member per team must stay available throughout the event. Projects must be submitted via the provided form before the announced deadline — late submissions will not be accepted.',
     rules: [
       'Team size: up to 4 members.',
-      'Problem statement release: Sunday, 9:00 AM.',
-      'Submission deadline: Monday, 9:00 AM.',
+      'Problem statement release: March 17, 9:00 AM.',
+      'Submission deadline will be announced on the event page.',
       'Any frontend or full-stack framework is allowed.',
       'Pre-built components and UI libraries are permitted.',
       'Projects must be deployed or demo-ready by the deadline.'
@@ -96,7 +96,7 @@ export const MOCK_EVENTS: Event[] = [
       photo: 'https://i.pravatar.cc/150?u=balgani'
     },
     registeredCount: 72,
-    date: '2026-03-15',
+    date: '2026-03-17',
     time: '09:00 AM',
     venue: 'Information Technology Department',
     image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop&auto=format',

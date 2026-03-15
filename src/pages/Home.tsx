@@ -62,6 +62,17 @@ export function Home() {
               April 8, 2026 · IT Department Day · it's happening 🎉
             </motion.div>
 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-5 sm:mb-6"
+            >
+              <Link to="/event/e11" className="inline-flex items-center gap-2 rounded-full bg-emerald-600 text-white px-4 py-2 text-xs sm:text-sm font-semibold border border-emerald-500 hover:bg-emerald-700 transition-colors shadow-sm">
+                Vibeathon problem statements released - View & Download
+              </Link>
+            </motion.div>
+
             <motion.h1 variants={textContainer} initial="hidden" animate="show" className="text-[2.6rem] sm:text-[4rem] lg:text-[6rem] font-medium leading-[0.95] tracking-[-0.03em] mb-5 sm:mb-8 perspective-1000">
               <motion.div variants={textItem} className="origin-bottom">Create.</motion.div>
               <motion.div variants={textItem} className="origin-bottom">Compete.</motion.div>
@@ -175,7 +186,7 @@ export function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.4, duration: 0.6 }}
               >
-                <span className="w-2 h-2 rounded-full bg-purple-400"></span> Vibeathon · Sun 9 AM to Mon 9 AM
+                <span className="w-2 h-2 rounded-full bg-purple-400"></span> Vibeathon · Mar 17 · 9:00 AM
               </motion.div>
               <motion.div
                 className="absolute bottom-[8%] right-[12%] z-40 bg-[var(--btn)] text-[var(--btn-text)] rounded-2xl px-4 py-2.5 shadow-lg text-xs font-semibold flex items-center gap-2 animate-float-slow"
@@ -203,7 +214,7 @@ export function Home() {
         <div className="flex animate-marquee whitespace-nowrap w-max">
           {[0, 1].map((i) => (
             <span key={i} className="flex items-center">
-              {['QUIZ BLITZ', 'MARCH 10 AM', 'CODING CONTEST', 'MARCH 10 PM', 'VIBEATHON', 'SUN 9 AM TO MON 9 AM', 'CYBER HUNT', 'MARCH 18', 'FREE ENTRY', 'NO EXCUSES', 'GLORY AWAITS', 'SHOW UP & WIN', 'IT DEPARTMENT', 'APRIL 8 2026', 'REGISTER FREE', 'DEPARTMENT DAY'].map((text) => (
+              {['QUIZ BLITZ', 'MARCH 10 AM', 'CODING CONTEST', 'MARCH 10 PM', 'VIBEATHON', 'MARCH 17 · 9:00 AM', 'PS RELEASED', 'CYBER HUNT', 'MARCH 18', 'FREE ENTRY', 'NO EXCUSES', 'GLORY AWAITS', 'SHOW UP & WIN', 'IT DEPARTMENT', 'APRIL 8 2026', 'REGISTER FREE', 'DEPARTMENT DAY'].map((text) => (
                 <span key={text} className="flex items-center">
                   <span className="text-xs font-bold tracking-[0.2em] uppercase px-5">{text}</span>
                   <span className="text-[var(--highlight)] text-base">✦</span>
