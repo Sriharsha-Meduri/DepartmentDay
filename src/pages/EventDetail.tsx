@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowLeft, Calendar, Clock, MapPin, Users, Phone, ArrowRight, Gift, Sparkles, Target, Star, UserCheck, Info, Bell } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, MapPin, Users, Phone, ArrowRight, Gift, Sparkles, Target, Star, UserCheck, Info, Bell, Download } from 'lucide-react';
 import { MOCK_EVENTS } from '../data/mock';
 import { useRef } from 'react';
 
@@ -96,6 +96,28 @@ export function EventDetail() {
                   <Info size={20} /> Important Note
                 </h2>
                 <p className="text-amber-900 font-light leading-relaxed text-sm sm:text-base">{event.note}</p>
+              </motion.section>
+            )}
+
+            {/* Vibeathon Problem Statement Download */}
+            {event.problemStatementUrl && (
+              <motion.section
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.28 }}
+                className="bg-emerald-50 border border-emerald-200 rounded-3xl p-7"
+              >
+                <h2 className="text-lg font-semibold text-emerald-800 mb-2">Problem statements released!!</h2>
+                <p className="text-emerald-900 font-light text-sm sm:text-base mb-5">Download from here.</p>
+                <a href={event.problemStatementUrl} download className="inline-block">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="bg-emerald-600 text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-emerald-700 transition-colors"
+                  >
+                    Download Problem Statement <Download size={18} />
+                  </motion.button>
+                </a>
               </motion.section>
             )}
 

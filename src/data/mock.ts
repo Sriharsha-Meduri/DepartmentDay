@@ -7,6 +7,7 @@ export interface Event {
   participationType?: 'SOLO' | 'TEAM';
   description: string;
   note?: string;
+  problemStatementUrl?: string;
   rules: string[];
   coordinator: {
     name: string;
@@ -79,7 +80,7 @@ export const MOCK_EVENTS: Event[] = [
     title: 'Vibeathon',
     category: 'TECHNICAL',
     participationType: 'TEAM',
-    description: 'Build the most creative and visually stunning web application in a 24-hour sprint. The problem statement (PS) will be released on Sunday at 9:00 AM, and submissions close on Monday at 9:00 AM. Your team can design, develop, and deploy during this window, then submit your live project link or demo before the deadline. Judging happens live, with evaluators assessing design quality, creativity, functionality, code structure, and the overall vibe your project gives off. Pre-built UI components and libraries are allowed. No prior approval of ideas is needed — just show up, get the PS, and start building.',
+    description: 'Build the most creative and visually stunning web application in a 24-hour sprint. Your team can design, develop, and deploy during the event window, then submit your live project link or demo before the deadline. Judging happens live, with evaluators assessing design quality, creativity, functionality, code structure, and the overall vibe your project gives off. Pre-built UI components and libraries are allowed. No prior approval of ideas is needed — just show up and start building.',
     note: 'Team event with a maximum of 4 members per team. At least one member per team must stay available throughout the event window. Projects must be submitted via the provided form before Monday 9:00 AM — late submissions will not be accepted.',
     rules: [
       'Team size: up to 4 members.',
@@ -99,7 +100,8 @@ export const MOCK_EVENTS: Event[] = [
     time: '09:00 AM',
     venue: 'Information Technology Department',
     image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop&auto=format',
-    formUrl: 'https://forms.gle/xMgHNY8cTWRpmcFQ7'
+    formUrl: 'https://forms.gle/xMgHNY8cTWRpmcFQ7',
+    problemStatementUrl: '/assets/vibathon_problem_statements.pdf'
   },
   {
     id: 'e12',
