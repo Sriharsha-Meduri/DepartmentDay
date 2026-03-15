@@ -109,13 +109,19 @@ export function EventDetail() {
               >
                 <h2 className="text-lg font-semibold text-emerald-800 mb-2">Problem statements released!!</h2>
                 <p className="text-emerald-900 font-light text-sm sm:text-base mb-5">Download from here.</p>
+                <p className="text-emerald-900/90 font-light text-sm sm:text-base leading-relaxed mb-2">
+                  Extra challenge unlocked: build any website or app that genuinely helps the department work better.
+                </p>
+                <p className="text-emerald-900/90 font-light text-sm sm:text-base leading-relaxed mb-5">
+                  Think attendance, labs, notices, clubs, projects, placements, or student support - if it solves a real campus problem, it counts.
+                </p>
                 <a href={event.problemStatementUrl} download className="inline-block">
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="bg-emerald-600 text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-emerald-700 transition-colors"
                   >
-                    Download Problem Statement <Download size={18} />
+                    Download Problem Statements <Download size={18} />
                   </motion.button>
                 </a>
               </motion.section>
